@@ -1,5 +1,12 @@
 # Version Changes of AngloChan
 
+## [0.3.0]
+
+-   Modified migration models to be nullable
+-   Setting up Routify
+-   Changed location of JavaScript file to support Routify
+-   Modified package.json to support Routify
+
 ## [0.2.0]
 
 -   Added Models and Migration files for [Board, Thread, Post, Upload]

@@ -7,12 +7,12 @@
 
 require('./bootstrap');
 
-import App from "./components/App.svelte";
+import App from "./App.svelte";
 
 const app = new App({
-  target: document.body
+  target: document.querySelector('#svelteApp')
 });
 
-window.app = app;
+window.app = app; 
 
 export default app;

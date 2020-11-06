@@ -14,8 +14,8 @@ class CreatePostsTable extends Migration {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("thread_id");
-            $table->text("name");
-            $table->text("option");
+            $table->text("name")->nullable();
+            $table->text("option")->nullable();
             $table->longText("content");
             $table->boolean("has_file");
             $table->timestamps();

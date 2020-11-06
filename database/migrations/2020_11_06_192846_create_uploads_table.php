@@ -17,7 +17,7 @@ class CreateUploadsTable extends Migration {
             $table->text("file_mime");
             $table->text("file_location");
             $table->text("file_size");
-            $table->text("file_resolution");
+            $table->text("file_resolution")->nullable();
             $table->timestamps();
         });
     }
