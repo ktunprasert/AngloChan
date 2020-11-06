@@ -1,8 +1,8 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
-// Variables
-@import 'variables';
+// Overwrite Variables
+@import "variables";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Load Bulma CSS framework
+@import "../../node_modules/bulma/bulma.sass";
