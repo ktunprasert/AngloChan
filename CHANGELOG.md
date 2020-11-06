@@ -1,5 +1,10 @@
 # Version Changes of AngloChan
 
+## [0.5.0]
+
+-   Added Boards view and Thread view layout structure
+-   Restructure threads listing to be part of BoardsController
+
 ## [0.4.0]
 
 -   Added API Routes for Boards and Threads

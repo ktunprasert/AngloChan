@@ -26,7 +26,6 @@
     // }
     import { Router } from "@sveltech/routify";
     import { routes } from "@sveltech/routify/tmp/routes";
-    console.log("hi");
 </script>
 
 <main>

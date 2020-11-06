@@ -14,11 +14,11 @@
 <main>
     {#await boards}
         Loading boards...
-    {:then value}
+    {:then { data }}
         <aside class="menu">
             <ul class="menu-list">
-                {#each value.data as v}
-                    <li><a href={$url('../' + v.slug)}>{v.name}</a></li>
+                {#each data.data as v}
+                    <li><a href={`/${v.slug}/`}>{v.name}</a></li>
                 {/each}
             </ul>
         </aside>
