@@ -17,7 +17,10 @@ class CreatePostsTable extends Migration {
             $table->text("name")->nullable();
             $table->text("option")->nullable();
             $table->longText("content");
-            $table->boolean("has_file");
+            $table->boolean("has_file")->default(true);
+            $table->integer("replies")->default(0);
+            $table->boolean("is_sticky")->default(false);
+            $table->datetime("latest_reply")->nullable();
             $table->timestamps();
         });
     }

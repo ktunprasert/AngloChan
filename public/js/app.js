@@ -3109,11 +3109,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * @sveltech/routify 1.9.9
- * File generated Fri Nov 06 2020 23:03:13 GMT+0000 (Greenwich Mean Time)
+ * File generated Sat Nov 07 2020 21:52:50 GMT+0000 (Greenwich Mean Time)
  */
 
 const __version = "1.9.9"
-const __timestamp = "2020-11-06T23:03:13.513Z"
+const __timestamp = "2020-11-07T21:52:50.729Z"
 
 //buildRoutes
 
@@ -26586,13 +26586,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
+  style.id = "svelte-7sz2y0-style";
+  style.textContent = ".board_view.svelte-7sz2y0{max-width:1200px;margin:0 auto}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
+}
+
 function get_then_context(ctx) {
-  ctx[8] = ctx[9].data;
+  ctx[4] = ctx[5].data;
 }
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[10] = list[i];
+  child_ctx[6] = list[i];
   return child_ctx;
 } // (1:0) <script>      import { params, url }
 
@@ -26604,7 +26612,7 @@ function create_catch_block(ctx) {
     p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
     d: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"]
   };
-} // (14:8) {:then { data }}
+} // (28:8) {:then { data }}
 
 
 function create_then_block(ctx) {
@@ -26612,11 +26620,17 @@ function create_then_block(ctx) {
   var ul;
   var each_value =
   /*data*/
-  ctx[8].data;
+  ctx[4].data;
   var each_blocks = [];
 
   for (var i = 0; i < each_value.length; i += 1) {
     each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+  }
+
+  var each_1_else = null;
+
+  if (!each_value.length) {
+    each_1_else = create_else_block(ctx);
   }
 
   return {
@@ -26626,12 +26640,20 @@ function create_then_block(ctx) {
       for (var _i = 0; _i < each_blocks.length; _i += 1) {
         each_blocks[_i].c();
       }
+
+      if (each_1_else) {
+        each_1_else.c();
+      }
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, ul, anchor);
 
       for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
         each_blocks[_i2].m(ul, null);
+      }
+
+      if (each_1_else) {
+        each_1_else.m(ul, null);
       }
     },
     p: function p(ctx, dirty) {
@@ -26642,7 +26664,7 @@ function create_then_block(ctx) {
       3) {
         each_value =
         /*data*/
-        ctx[8].data;
+        ctx[4].data;
 
         var _i3;
 
@@ -26665,14 +26687,43 @@ function create_then_block(ctx) {
         }
 
         each_blocks.length = each_value.length;
+
+        if (each_value.length) {
+          if (each_1_else) {
+            each_1_else.d(1);
+            each_1_else = null;
+          }
+        } else if (!each_1_else) {
+          each_1_else = create_else_block(ctx);
+          each_1_else.c();
+          each_1_else.m(ul, null);
+        }
       }
     },
     d: function d(detaching) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(ul);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_each"])(each_blocks, detaching);
+      if (each_1_else) each_1_else.d();
     }
   };
-} // (16:16) {#each data.data as t}
+} // (32:16) {:else}
+
+
+function create_else_block(ctx) {
+  var li;
+  return {
+    c: function c() {
+      li = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("li");
+      li.textContent = "No threads found...";
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, li, anchor);
+    },
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(li);
+    }
+  };
+} // (30:16) {#each data.data as t}
 
 
 function create_each_block(ctx) {
@@ -26680,7 +26731,7 @@ function create_each_block(ctx) {
   var a;
   var t_value =
   /*t*/
-  ctx[10].title + "";
+  ctx[6].title + "";
   var t;
   var a_href_value;
   return {
@@ -26692,19 +26743,35 @@ function create_each_block(ctx) {
       /*board*/
       ctx[0], "/thread/").concat(
       /*t*/
-      ctx[10].id));
+      ctx[6].id));
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, li, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(li, a);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(a, t);
     },
-    p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    p: function p(ctx, dirty) {
+      if (dirty &
+      /*request*/
+      2 && t_value !== (t_value =
+      /*t*/
+      ctx[6].title + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t, t_value);
+
+      if (dirty &
+      /*board, request*/
+      3 && a_href_value !== (a_href_value = "/".concat(
+      /*board*/
+      ctx[0], "/thread/").concat(
+      /*t*/
+      ctx[6].id))) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a, "href", a_href_value);
+      }
+    },
     d: function d(detaching) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(li);
     }
   };
-} // (12:24)               Loading threads...          {:then { data }}
+} // (26:24)               Loading threads...          {:then { data }}
 
 
 function create_pending_block(ctx) {
@@ -26721,11 +26788,16 @@ function create_pending_block(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
     }
   };
-} // (11:10)           
+}
 
-
-function fallback_block(ctx) {
-  var await_block_anchor;
+function create_fragment(ctx) {
+  var div1;
+  var h1;
+  var t0;
+  var t1;
+  var t2;
+  var t3;
+  var div0;
   var promise;
   var info = {
     ctx: ctx,
@@ -26735,132 +26807,99 @@ function fallback_block(ctx) {
     pending: create_pending_block,
     then: create_then_block,
     "catch": create_catch_block,
-    value: 9
+    value: 5
   };
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["handle_promise"])(promise =
   /*request*/
   ctx[1], info);
   return {
     c: function c() {
-      await_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["empty"])();
+      div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      h1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h1");
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])("/");
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(
+      /*board*/
+      ctx[0]);
+      t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])("/");
+      t3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
       info.block.c();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h1, "class", "is-size-1 has-text-weight-bold has-text-centered has-text-black");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "threads_list");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "board_view svelte-7sz2y0");
     },
     m: function m(target, anchor) {
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, await_block_anchor, anchor);
-      info.block.m(target, info.anchor = anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div1, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, h1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(h1, t0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(h1, t1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(h1, t2);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t3);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, div0);
+      info.block.m(div0, info.anchor = null);
 
       info.mount = function () {
-        return await_block_anchor.parentNode;
+        return div0;
       };
 
-      info.anchor = await_block_anchor;
+      info.anchor = null;
     },
-    p: function p(new_ctx, dirty) {
+    p: function p(new_ctx, _ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+          dirty = _ref2[0];
+
       ctx = new_ctx;
-      {
+      if (dirty &
+      /*board*/
+      1) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t1,
+      /*board*/
+      ctx[0]);
+      info.ctx = ctx;
+
+      if (dirty &
+      /*request*/
+      2 && promise !== (promise =
+      /*request*/
+      ctx[1]) && Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["handle_promise"])(promise, info)) {} else {
         var child_ctx = ctx.slice();
-        child_ctx[9] = info.resolved;
+        child_ctx[5] = info.resolved;
         info.block.p(child_ctx, dirty);
       }
     },
+    i: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    o: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
     d: function d(detaching) {
-      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(await_block_anchor);
-      info.block.d(detaching);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div1);
+      info.block.d();
       info.token = null;
       info = null;
     }
   };
 }
 
-function create_fragment(ctx) {
-  var main;
-  var h1;
-  var t1;
-  var current;
-  var default_slot_template =
-  /*#slots*/
-  ctx[3]["default"];
-  var default_slot = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_slot"])(default_slot_template, ctx,
-  /*$$scope*/
-  ctx[2], null);
-  var default_slot_or_fallback = default_slot || fallback_block(ctx);
-  return {
-    c: function c() {
-      main = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("main");
-      h1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h1");
-      h1.textContent = "".concat(
-      /*board*/
-      ctx[0]);
-      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-      if (default_slot_or_fallback) default_slot_or_fallback.c();
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h1, "class", "is-size-1 has-text-weight-bold");
-    },
-    m: function m(target, anchor) {
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, h1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, t1);
-
-      if (default_slot_or_fallback) {
-        default_slot_or_fallback.m(main, null);
-      }
-
-      current = true;
-    },
-    p: function p(ctx, _ref) {
-      var _ref2 = _slicedToArray(_ref, 1),
-          dirty = _ref2[0];
-
-      if (default_slot) {
-        if (default_slot.p && dirty &
-        /*$$scope*/
-        4) {
-          Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["update_slot"])(default_slot, default_slot_template, ctx,
-          /*$$scope*/
-          ctx[2], dirty, null, null);
-        }
-      }
-    },
-    i: function i(local) {
-      if (current) return;
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(default_slot_or_fallback, local);
-      current = true;
-    },
-    o: function o(local) {
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(default_slot_or_fallback, local);
-      current = false;
-    },
-    d: function d(detaching) {
-      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(main);
-      if (default_slot_or_fallback) default_slot_or_fallback.d(detaching);
-    }
-  };
-}
-
 function instance($$self, $$props, $$invalidate) {
   var $params;
-  var $url;
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["component_subscribe"])($$self, _sveltech_routify__WEBPACK_IMPORTED_MODULE_1__["params"], function ($$value) {
-    return $$invalidate(4, $params = $$value);
+    return $$invalidate(2, $params = $$value);
   });
-  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["component_subscribe"])($$self, _sveltech_routify__WEBPACK_IMPORTED_MODULE_1__["url"], function ($$value) {
-    return $$invalidate(5, $url = $$value);
-  });
-  var _$$props$$$slots = $$props.$$slots,
-      slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
-      $$scope = $$props.$$scope;
-  var _$params = $params,
-      board = _$params.board;
 
   var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
+  var board = $params.board;
   var request = axios.get("/api/boards/list/?board_slug=" + board);
-  var urlPrefix = $url();
 
-  $$self.$$set = function ($$props) {
-    if ("$$scope" in $$props) $$invalidate(2, $$scope = $$props.$$scope);
+  $$self.$$.update = function () {
+    if ($$self.$$.dirty &
+    /*$params, board*/
+    5) {
+      $: {
+        $$invalidate(0, board = $params.board);
+        $$invalidate(1, request = axios.get("/api/boards/list/?board_slug=" + board));
+      }
+    }
   };
 
-  return [board, request, $$scope, slots];
+  return [board, request];
 }
 
 var U5Bboardu5D = /*#__PURE__*/function (_SvelteComponent) {
@@ -26874,6 +26913,7 @@ var U5Bboardu5D = /*#__PURE__*/function (_SvelteComponent) {
     _classCallCheck(this, U5Bboardu5D);
 
     _this = _super.call(this);
+    if (!document.getElementById("svelte-7sz2y0-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {});
     return _this;
   }
@@ -26896,6 +26936,7 @@ var U5Bboardu5D = /*#__PURE__*/function (_SvelteComponent) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _sveltech_routify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @sveltech/routify */ "./node_modules/@sveltech/routify/runtime/index.js");
+/* harmony import */ var _components_Nav_svelte__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_components/Nav.svelte */ "./src/pages/_components/Nav.svelte");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26918,19 +26959,38 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 function create_fragment(ctx) {
+  var nav;
+  var t;
   var main;
+  var current;
+  nav = new _components_Nav_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({});
   return {
     c: function c() {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(nav.$$.fragment);
+      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       main = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("main");
     },
     m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(nav, target, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, t, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
+      current = true;
     },
     p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-    i: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-    o: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+    i: function i(local) {
+      if (current) return;
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(nav.$$.fragment, local);
+      current = true;
+    },
+    o: function o(local) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(nav.$$.fragment, local);
+      current = false;
+    },
     d: function d(detaching) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(nav, detaching);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(main);
     }
   };
@@ -26944,7 +27004,6 @@ function instance($$self, $$props, $$invalidate) {
   var _$params = $params,
       board = _$params.board,
       id = _$params.id;
-  console.log("reached", board, id);
   return [];
 }
 
@@ -27233,6 +27292,349 @@ var Layout = /*#__PURE__*/function (_SvelteComponent) {
 
 /***/ }),
 
+/***/ "./src/pages/_components/Nav.svelte":
+/*!******************************************!*\
+  !*** ./src/pages/_components/Nav.svelte ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _sveltech_routify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @sveltech/routify */ "./node_modules/@sveltech/routify/runtime/index.js");
+
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* src\pages\_components\Nav.svelte generated by Svelte v3.29.4 */
+
+
+
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("style");
+  style.id = "svelte-s2hkj6-style";
+  style.textContent = "#nav.svelte-s2hkj6.svelte-s2hkj6{display:flex;justify-content:center;text-align:center}a.svelte-s2hkj6.svelte-s2hkj6{margin:0 10px}#nav.svelte-s2hkj6 a.svelte-s2hkj6:hover{text-decoration:underline !important}hr.svelte-s2hkj6.svelte-s2hkj6{max-width:500px;margin:0.25rem auto}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(document.head, style);
+}
+
+function get_then_context(ctx) {
+  ctx[4] = ctx[5].data;
+}
+
+function get_each_context(ctx, list, i) {
+  var child_ctx = ctx.slice();
+  child_ctx[6] = list[i];
+  return child_ctx;
+} // (1:0) <script>      import { metatags, url }
+
+
+function create_catch_block(ctx) {
+  return {
+    c: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
+    m: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
+    p: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
+    d: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"]
+  };
+} // (32:0) {:then { data }}
+
+
+function create_then_block(ctx) {
+  get_then_context(ctx);
+  var nav;
+  var t;
+  var hr;
+  var each_value =
+  /*data*/
+  ctx[4].data;
+  var each_blocks = [];
+
+  for (var i = 0; i < each_value.length; i += 1) {
+    each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+  }
+
+  return {
+    c: function c() {
+      nav = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("nav");
+
+      for (var _i = 0; _i < each_blocks.length; _i += 1) {
+        each_blocks[_i].c();
+      }
+
+      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
+      hr = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("hr");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(nav, "id", "nav");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(nav, "class", "svelte-s2hkj6");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(hr, "class", " svelte-s2hkj6");
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, nav, anchor);
+
+      for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
+        each_blocks[_i2].m(nav, null);
+      }
+
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, t, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, hr, anchor);
+    },
+    p: function p(ctx, dirty) {
+      get_then_context(ctx);
+
+      if (dirty &
+      /*$url, boards*/
+      3) {
+        each_value =
+        /*data*/
+        ctx[4].data;
+
+        var _i3;
+
+        for (_i3 = 0; _i3 < each_value.length; _i3 += 1) {
+          var child_ctx = get_each_context(ctx, each_value, _i3);
+
+          if (each_blocks[_i3]) {
+            each_blocks[_i3].p(child_ctx, dirty);
+          } else {
+            each_blocks[_i3] = create_each_block(child_ctx);
+
+            each_blocks[_i3].c();
+
+            each_blocks[_i3].m(nav, null);
+          }
+        }
+
+        for (; _i3 < each_blocks.length; _i3 += 1) {
+          each_blocks[_i3].d(1);
+        }
+
+        each_blocks.length = each_value.length;
+      }
+    },
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach"])(nav);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["destroy_each"])(each_blocks, detaching);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach"])(t);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach"])(hr);
+    }
+  };
+} // (34:8) {#each data.data as v}
+
+
+function create_each_block(ctx) {
+  var a;
+  var t0;
+  var t1_value =
+  /*v*/
+  ctx[6].slug + "";
+  var t1;
+  var t2;
+  var a_href_value;
+  return {
+    c: function c() {
+      a = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("a");
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])("/");
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t1_value);
+      t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])("/");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(a, "href", a_href_value =
+      /*$url*/
+      ctx[0]("/" +
+      /*v*/
+      ctx[6].slug));
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(a, "class", "svelte-s2hkj6");
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, a, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t2);
+    },
+    p: function p(ctx, dirty) {
+      if (dirty &
+      /*$url*/
+      1 && a_href_value !== (a_href_value =
+      /*$url*/
+      ctx[0]("/" +
+      /*v*/
+      ctx[6].slug))) {
+        Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(a, "href", a_href_value);
+      }
+    },
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach"])(a);
+    }
+  };
+} // (30:15)       <nav id="nav">Loading boards...</nav>  {:then { data }}
+
+
+function create_pending_block(ctx) {
+  var nav;
+  return {
+    c: function c() {
+      nav = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("nav");
+      nav.textContent = "Loading boards...";
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(nav, "id", "nav");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(nav, "class", "svelte-s2hkj6");
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, nav, anchor);
+    },
+    p: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach"])(nav);
+    }
+  };
+}
+
+function create_fragment(ctx) {
+  var await_block_anchor;
+  var promise;
+  var info = {
+    ctx: ctx,
+    current: null,
+    token: null,
+    hasCatch: false,
+    pending: create_pending_block,
+    then: create_then_block,
+    "catch": create_catch_block,
+    value: 5
+  };
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["handle_promise"])(promise =
+  /*boards*/
+  ctx[1], info);
+  return {
+    c: function c() {
+      await_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["empty"])();
+      info.block.c();
+    },
+    m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, await_block_anchor, anchor);
+      info.block.m(target, info.anchor = anchor);
+
+      info.mount = function () {
+        return await_block_anchor.parentNode;
+      };
+
+      info.anchor = await_block_anchor;
+    },
+    p: function p(new_ctx, _ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+          dirty = _ref2[0];
+
+      ctx = new_ctx;
+      {
+        var child_ctx = ctx.slice();
+        child_ctx[5] = info.resolved;
+        info.block.p(child_ctx, dirty);
+      }
+    },
+    i: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
+    o: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
+    d: function d(detaching) {
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach"])(await_block_anchor);
+      info.block.d(detaching);
+      info.token = null;
+      info = null;
+    }
+  };
+}
+
+function instance($$self, $$props, $$invalidate) {
+  var $url;
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["component_subscribe"])($$self, _sveltech_routify__WEBPACK_IMPORTED_MODULE_2__["url"], function ($$value) {
+    return $$invalidate(0, $url = $$value);
+  });
+
+  var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+  function getBoards() {
+    return _getBoards.apply(this, arguments);
+  }
+
+  function _getBoards() {
+    _getBoards = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var boards;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios.get("/api/boards");
+
+            case 2:
+              boards = _context.sent;
+              return _context.abrupt("return", boards);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _getBoards.apply(this, arguments);
+  }
+
+  var boards = getBoards();
+  return [$url, boards];
+}
+
+var Nav = /*#__PURE__*/function (_SvelteComponent) {
+  _inherits(Nav, _SvelteComponent);
+
+  var _super = _createSuper(Nav);
+
+  function Nav(options) {
+    var _this;
+
+    _classCallCheck(this, Nav);
+
+    _this = _super.call(this);
+    if (!document.getElementById("svelte-s2hkj6-style")) add_css();
+    Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_1__["safe_not_equal"], {});
+    return _this;
+  }
+
+  return Nav;
+}(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["SvelteComponent"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Nav);
+
+/***/ }),
+
 /***/ "./src/pages/_fallback.svelte":
 /*!************************************!*\
   !*** ./src/pages/_fallback.svelte ***!
@@ -27381,6 +27783,7 @@ var Fallback = /*#__PURE__*/function (_SvelteComponent) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _components_Nav_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_components/Nav.svelte */ "./src/pages/_components/Nav.svelte");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27414,8 +27817,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* src\pages\_layout.svelte generated by Svelte v3.29.4 */
 
 
+
 function create_fragment(ctx) {
+  var nav;
+  var t0;
+  var div;
+  var t1;
   var current;
+  nav = new _components_Nav_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({});
   var default_slot_template =
   /*#slots*/
   ctx[1]["default"];
@@ -27424,9 +27833,20 @@ function create_fragment(ctx) {
   ctx[0], null);
   return {
     c: function c() {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(nav.$$.fragment);
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div.innerHTML = "<a href=\"/\"><img src=\"/images/logo.png\" alt=\"\"/></a>";
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
       if (default_slot) default_slot.c();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "logo");
     },
     m: function m(target, anchor) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(nav, target, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, t0, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, t1, anchor);
+
       if (default_slot) {
         default_slot.m(target, anchor);
       }
@@ -27449,14 +27869,20 @@ function create_fragment(ctx) {
     },
     i: function i(local) {
       if (current) return;
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(nav.$$.fragment, local);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(default_slot, local);
       current = true;
     },
     o: function o(local) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(nav.$$.fragment, local);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(nav, detaching);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t0);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t1);
       if (default_slot) default_slot.d(detaching);
     }
   };
@@ -27509,6 +27935,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _sveltech_routify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @sveltech/routify */ "./node_modules/@sveltech/routify/runtime/index.js");
+/* harmony import */ var _components_Nav_svelte__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_components/Nav.svelte */ "./src/pages/_components/Nav.svelte");
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -27549,13 +27976,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+function add_css() {
+  var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("style");
+  style.id = "svelte-1niq3gf-style";
+  style.textContent = ".boards_list.svelte-1niq3gf{text-align:center}.menu.svelte-1niq3gf{max-width:300px;margin:0 auto}";
+  Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(document.head, style);
+}
+
 function get_then_context(ctx) {
-  ctx[4] = ctx[5].data;
+  ctx[2] = ctx[3].data;
 }
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[6] = list[i];
+  child_ctx[4] = list[i];
   return child_ctx;
 } // (1:0) <script>      import { metatags, url }
 
@@ -27567,7 +28002,7 @@ function create_catch_block(ctx) {
     p: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
     d: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"]
   };
-} // (17:4) {:then { data }}
+} // (32:8) {:then { data }}
 
 
 function create_then_block(ctx) {
@@ -27576,7 +28011,7 @@ function create_then_block(ctx) {
   var ul;
   var each_value =
   /*data*/
-  ctx[4].data;
+  ctx[2].data;
   var each_blocks = [];
 
   for (var i = 0; i < each_value.length; i += 1) {
@@ -27593,7 +28028,7 @@ function create_then_block(ctx) {
       }
 
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(ul, "class", "menu-list");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(aside, "class", "menu");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(aside, "class", "menu svelte-1niq3gf");
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, aside, anchor);
@@ -27611,7 +28046,7 @@ function create_then_block(ctx) {
       1) {
         each_value =
         /*data*/
-        ctx[4].data;
+        ctx[2].data;
 
         var _i3;
 
@@ -27641,44 +28076,59 @@ function create_then_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["destroy_each"])(each_blocks, detaching);
     }
   };
-} // (20:16) {#each data.data as v}
+} // (35:20) {#each data.data as b}
 
 
 function create_each_block(ctx) {
   var li;
   var a;
-  var t_value =
-  /*v*/
-  ctx[6].name + "";
-  var t;
+  var t0;
+  var t1_value =
+  /*b*/
+  ctx[4].slug + "";
+  var t1;
+  var t2;
+  var t3_value =
+  /*b*/
+  ctx[4].name + "";
+  var t3;
   var a_href_value;
+  var t4;
   return {
     c: function c() {
       li = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("li");
       a = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("a");
-      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t_value);
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])("/");
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t1_value);
+      t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])("/ - ");
+      t3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])(t3_value);
+      t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["space"])();
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(a, "href", a_href_value = "/".concat(
-      /*v*/
-      ctx[6].slug, "/"));
+      /*b*/
+      ctx[4].slug, "/"));
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, li, anchor);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(li, a);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t2);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(a, t3);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(li, t4);
     },
     p: svelte_internal__WEBPACK_IMPORTED_MODULE_1__["noop"],
     d: function d(detaching) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["detach"])(li);
     }
   };
-} // (15:19)           Loading boards...      {:then { data }}
+} // (30:23)               Loading boards....          {:then { data }}
 
 
 function create_pending_block(ctx) {
   var t;
   return {
     c: function c() {
-      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])("Loading boards...");
+      t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["text"])("Loading boards....");
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, t, anchor);
@@ -27692,6 +28142,7 @@ function create_pending_block(ctx) {
 
 function create_fragment(ctx) {
   var main;
+  var div;
   var promise;
   var info = {
     ctx: ctx,
@@ -27701,7 +28152,7 @@ function create_fragment(ctx) {
     pending: create_pending_block,
     then: create_then_block,
     "catch": create_catch_block,
-    value: 5
+    value: 3
   };
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["handle_promise"])(promise =
   /*boards*/
@@ -27709,14 +28160,17 @@ function create_fragment(ctx) {
   return {
     c: function c() {
       main = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("main");
+      div = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["element"])("div");
       info.block.c();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(div, "class", "boards_list svelte-1niq3gf");
     },
     m: function m(target, anchor) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["insert"])(target, main, anchor);
-      info.block.m(main, info.anchor = null);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["append"])(main, div);
+      info.block.m(div, info.anchor = null);
 
       info.mount = function () {
-        return main;
+        return div;
       };
 
       info.anchor = null;
@@ -27728,7 +28182,7 @@ function create_fragment(ctx) {
       ctx = new_ctx;
       {
         var child_ctx = ctx.slice();
-        child_ctx[5] = info.resolved;
+        child_ctx[3] = info.resolved;
         info.block.p(child_ctx, dirty);
       }
     },
@@ -27743,40 +28197,37 @@ function create_fragment(ctx) {
   };
 }
 
+function getBoards() {
+  return _getBoards.apply(this, arguments);
+}
+
+function _getBoards() {
+  _getBoards = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    var boards;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return axios.get("/api/boards");
+
+          case 2:
+            boards = _context.sent;
+            return _context.abrupt("return", boards);
+
+          case 4:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _getBoards.apply(this, arguments);
+}
+
 function instance($$self) {
   _sveltech_routify__WEBPACK_IMPORTED_MODULE_2__["metatags"].title = "AngloChan";
   _sveltech_routify__WEBPACK_IMPORTED_MODULE_2__["metatags"].description = "A Chan for retards";
-
-  var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
-  function getBoards() {
-    return _getBoards.apply(this, arguments);
-  }
-
-  function _getBoards() {
-    _getBoards = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var boards;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return axios.get("/api/boards");
-
-            case 2:
-              boards = _context.sent;
-              return _context.abrupt("return", boards);
-
-            case 4:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _getBoards.apply(this, arguments);
-  }
-
   var boards = getBoards();
   return [boards];
 }
@@ -27792,6 +28243,7 @@ var Pages = /*#__PURE__*/function (_SvelteComponent) {
     _classCallCheck(this, Pages);
 
     _this = _super.call(this);
+    if (!document.getElementById("svelte-1niq3gf-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_1__["safe_not_equal"], {});
     return _this;
   }

@@ -1,11 +1,13 @@
 <script>
     import { params } from "@sveltech/routify";
     let { board, id } = $params;
-    console.log("reached", board, id);
+    import Nav from "../../_components/Nav.svelte";
+    // console.log("reached", board, id);
     // const axios = require("axios");
     // const url = axios.get("/api/threads?board_slug=" + board);
 </script>
 
+<Nav />
 <main>
     <!-- <h1 class="is-size-1 has-text-weight-bold">{board}</h1>
     <slot>

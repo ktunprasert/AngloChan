@@ -23,6 +23,7 @@
         "laravel-mix": "^5.0.1",
         "laravel-mix-svelte": "^0.1.0",
         "lodash": "^4.17.19",
+        "node-sass": "^5.0.0",
         "popper.js": "^1.12",
         "resolve-url-loader": "^3.1.0",
         "rollup": "^2.33.1",
@@ -32,5 +33,7 @@
         "svelte-loader": "^2.13.4",
         "vue-template-compiler": "^2.6.12"
     },
-    "dependencies": {}
+    "dependencies": {
+        "svelte-preprocess": "^4.5.2"
+    }
 }

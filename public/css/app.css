@@ -10,6 +10,28 @@ h6 {
   font-weight: 700;
 }
 
+html {
+  background: #f4f4f4 !important;
+}
+
+hr {
+  background-color: #dedede !important;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.boards_list {
+  text-align: center;
+}
+
+.menu {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 /*! bulma.io v0.9.1 | MIT License | github.com/jgthms/bulma */
 
 /* Bulma Utilities */
@@ -5511,7 +5533,7 @@ button.dropdown-item.is-active {
 }
 
 .menu-list a:hover {
-  background-color: whitesmoke;
+  background-color: #dbdbdb;
   color: #363636;
 }
 

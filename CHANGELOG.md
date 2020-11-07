@@ -1,5 +1,12 @@
 # Version Changes of AngloChan
 
+## [0.6.0]
+
+### **Svelte**
+
+-   Added Nav component
+-   Added content on index page and single board view page
+
 ## [0.5.0]
 
 -   Added Boards view and Thread view layout structure

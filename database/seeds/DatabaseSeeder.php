@@ -15,16 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("boards")->insert([
-            ["id"=> 1,"slug" => "a", "name" => "Anime"],
-            ["id"=> 2,"slug" => "g", "name" => "Technology"],
-            ["id"=> 3,"slug" => "fit", "name" => "Fitness & Health"],
-        ]);
-        
-        $boards = Boards::all();
-        DB::table("threads")->insert([
-            ["board_id" => 1, "title" => "Ozzies banned Anime", "content" => "AUSSIES POSTERS BTFO", "has_file" => false],
-            ["board_id" => 2, "title" => "Based Terry predicting the future", "content" => "How can one man be so based?", "has_file" => false],
-        ]);
+        $boards = [
+            ["slug" => "a", "name" => "Anime"],
+            ["slug" => "g", "name" => "Technology"],
+            ["slug" => "fit", "name" => "Fitness & Health"],
+        ];
+
+        foreach($boards as $b){
+            $new_board = new Boards();
+            $new_board->slug = $b['slug'];
+            $new_board->name = $b['name'];
+            $new_board->save();
+        }
     }
 }
