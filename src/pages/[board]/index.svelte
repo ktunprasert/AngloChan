@@ -4,15 +4,13 @@
     import { threads, refresh } from "../../stores/stores";
     import { isChangingPage } from "@sveltech/routify";
     // Grab the board slug from route parameter
-    let board = $params.board;
     refresh($params.board);
     $: {
         // console.log($isChangingPage);
-
         // Life Cycle variable which triggers 'false' when a page has stopped transitioning
         // a.k.a final destination is current page and has stopped
         if (!$isChangingPage) {
-            refresh(board);
+            refresh($params.board);
         }
     }
 </script>

@@ -1,5 +1,11 @@
 # Version Changes of AngloChan
 
+## [0.7.1]
+
+### **Svelte**
+
+-   Hotfix - Changing board view didn't correctly update thread due to unchanging variable in the life cycle - this will now follow the routify variable
+
 ## [0.7.0]
 
 ### **Svelte**

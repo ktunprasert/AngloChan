@@ -26655,9 +26655,9 @@ function add_css() {
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[4] = list[i];
+  child_ctx[3] = list[i];
   return child_ctx;
-} // (34:8) {:else}
+} // (32:8) {:else}
 
 
 function create_else_block(ctx) {
@@ -26673,19 +26673,19 @@ function create_else_block(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
     }
   };
-} // (32:8) {#each $threads as b}
+} // (30:8) {#each $threads as b}
 
 
 function create_each_block(ctx) {
   var li;
   var t0_value =
   /*b*/
-  ctx[4].title + "";
+  ctx[3].title + "";
   var t0;
   var t1;
   var t2_value =
   /*b*/
-  ctx[4].content + "";
+  ctx[3].content + "";
   var t2;
   return {
     c: function c() {
@@ -26705,12 +26705,12 @@ function create_each_block(ctx) {
       /*$threads*/
       2 && t0_value !== (t0_value =
       /*b*/
-      ctx[4].title + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t0, t0_value);
+      ctx[3].title + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t0, t0_value);
       if (dirty &
       /*$threads*/
       2 && t2_value !== (t2_value =
       /*b*/
-      ctx[4].content + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t2, t2_value);
+      ctx[3].content + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t2, t2_value);
     },
     d: function d(detaching) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(li);
@@ -26857,19 +26857,18 @@ function instance($$self, $$props, $$invalidate) {
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["component_subscribe"])($$self, _stores_stores__WEBPACK_IMPORTED_MODULE_3__["threads"], function ($$value) {
     return $$invalidate(1, $threads = $$value);
   });
-  var board = $params.board;
   Object(_stores_stores__WEBPACK_IMPORTED_MODULE_3__["refresh"])($params.board);
 
   $$self.$$.update = function () {
     if ($$self.$$.dirty &
-    /*$isChangingPage*/
-    4) {
+    /*$isChangingPage, $params*/
+    5) {
       $: {
         // console.log($isChangingPage);
         // Life Cycle variable which triggers 'false' when a page has stopped transitioning
         // a.k.a final destination is current page and has stopped
         if (!$isChangingPage) {
-          Object(_stores_stores__WEBPACK_IMPORTED_MODULE_3__["refresh"])(board);
+          Object(_stores_stores__WEBPACK_IMPORTED_MODULE_3__["refresh"])($params.board);
         }
       }
     }
