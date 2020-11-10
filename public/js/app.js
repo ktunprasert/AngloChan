@@ -26657,7 +26657,7 @@ function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[3] = list[i];
   return child_ctx;
-} // (32:8) {:else}
+} // (35:8) {:else}
 
 
 function create_else_block(ctx) {
@@ -26673,7 +26673,7 @@ function create_else_block(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
     }
   };
-} // (30:8) {#each $threads as b}
+} // (33:8) {#each $threads as b}
 
 
 function create_each_block(ctx) {
@@ -26858,6 +26858,9 @@ function instance($$self, $$props, $$invalidate) {
     return $$invalidate(1, $threads = $$value);
   });
   Object(_stores_stores__WEBPACK_IMPORTED_MODULE_3__["refresh"])($params.board);
+  Object(svelte__WEBPACK_IMPORTED_MODULE_2__["onDestroy"])(function () {
+    _stores_stores__WEBPACK_IMPORTED_MODULE_3__["threads"].set([]);
+  });
 
   $$self.$$.update = function () {
     if ($$self.$$.dirty &

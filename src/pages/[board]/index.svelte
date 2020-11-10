@@ -1,6 +1,6 @@
 <script>
     import { params, url } from "@sveltech/routify";
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
     import { threads, refresh } from "../../stores/stores";
     import { isChangingPage } from "@sveltech/routify";
     // Grab the board slug from route parameter
@@ -13,6 +13,9 @@
             refresh($params.board);
         }
     }
+    onDestroy(() => {
+        threads.set([]);
+    });
 </script>
 
 <style>

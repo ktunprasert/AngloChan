@@ -1,5 +1,11 @@
 # Version Changes of AngloChan
 
+## [0.7.2]
+
+### **Svelte**
+
+-   Hotfix - When navigating away from the list of threads, the store is set to empty list
+
 ## [0.7.1]
 
 ### **Svelte**
