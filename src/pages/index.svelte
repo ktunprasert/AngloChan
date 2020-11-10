@@ -1,6 +1,5 @@
 <script>
     import { metatags, url } from "@sveltech/routify";
-    import Nav from "./_components/Nav.svelte";
     metatags.title = "AngloChan";
     metatags.description = "A Chan for retards";
 
@@ -11,11 +10,7 @@
     let boards = getBoards();
 </script>
 
-<style global>
-    .logo {
-        display: flex;
-        justify-content: center;
-    }
+<style>
     .boards_list {
         text-align: center;
     }

@@ -13,12 +13,15 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" integrity="sha512-F5QTlBqZlvuBEs9LQPqc1iZv2UMxcVXezbHzomzS6Df4MZMClge/8+gXrKw2fl5ysdk4rWjR0vKS7NNkfymaBQ==" crossorigin="anonymous"></script>
 
     {{-- Embed stylesheet --}}
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
-    <!-- Embedd the Script -->
+    <!-- Embed the Script -->
     <script defer src="{{ asset('js/app.js') }}"></script>
+
+    
 
 </head>
 

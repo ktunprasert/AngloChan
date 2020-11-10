@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get("/boards", "BoardsController@get");
 Route::get("/boards/list", "BoardsController@list");
+Route::post("/threads", "ThreadsController@store");

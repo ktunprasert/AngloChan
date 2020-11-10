@@ -1,5 +1,21 @@
 # Version Changes of AngloChan
 
+## [0.7.0]
+
+### **Svelte**
+
+-   You can now add threads!
+-   Added global store for a list of threads
+-   Added a new `AddThread.svelte` component
+-   Fully implemented the abiliity to post mixed-content requests (JSON + file-blob) to `/api/threads`
+-   Adjusted board components layout
+-   Added FontAwesome
+
+### **Laravel**
+
+-   Created ThreadsController@store to support POST request with validation
+-   Added FontAwesome CDN to `views.layouts.app`
+
 ## [0.6.0]
 
 ### **Svelte**
