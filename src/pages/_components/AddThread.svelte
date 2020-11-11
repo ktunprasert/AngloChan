@@ -1,6 +1,7 @@
 <script>
     import { params, url } from "@sveltech/routify";
-    import { boards } from "../../stores/stores";
+    import { threads } from "../../stores/stores";
+    import { tick } from "svelte";
     let value = $params.board;
     let title, content, files, fileName;
     $: {
@@ -12,8 +13,9 @@
     // Using FormData to support file addition alongside JSON structure
     async function threadSubmit() {
         let data = new FormData(document.querySelector("#addThread"));
-        axios
-            .post("/api/threads", data, {
+        data.append("is_thread", true);
+        await axios
+            .post("/api/posts", data, {
                 headers: {
                     "Content-Type":
                         "multipart/form-data; charset=utf-8; boundary=" +
@@ -24,11 +26,17 @@
             })
             .then(e => {
                 // If the thread was successfully updated, append the boardslist
-                boards.set([...$boards, e.data]);
+                threads.set([...$threads, e.data]);
             })
             .catch(err => {
                 console.log(err);
             });
+
+        await tick();
+        title = null;
+        content = null;
+        files = null;
+        fileName = null;
     }
 </script>
 

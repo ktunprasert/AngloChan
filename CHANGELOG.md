@@ -1,5 +1,17 @@
 # Version Changes of AngloChan
 
+## [0.7.3]
+
+### **Svelte**
+
+-   Fixed reference error within Stores regarding threads/boards reference
+-   Clear form inputs after a successful request
+
+### **Laravel**
+
+-   Removed Threads and Threads controller, threads should be counted as "special post" instead to keep ID reference
+-   Adjusted Posts Model to better reflect "thread" functionality
+
 ## [0.7.2]
 
 ### **Svelte**

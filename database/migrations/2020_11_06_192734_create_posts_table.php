@@ -13,14 +13,16 @@ class CreatePostsTable extends Migration {
     public function up() {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("board_id");
             $table->unsignedBigInteger("thread_id");
             $table->text("name")->nullable();
+            $table->text("title")->nullable();
             $table->text("option")->nullable();
             $table->longText("content");
             $table->boolean("has_file")->default(true);
+            $table->boolean("is_thread")->default(false);
             $table->integer("replies")->default(0);
             $table->boolean("is_sticky")->default(false);
-            $table->datetime("latest_reply")->nullable();
             $table->timestamps();
         });
     }
