@@ -26,7 +26,11 @@
             })
             .then(e => {
                 // If the thread was successfully updated, append the boardslist
-                threads.set([...$threads, e.data]);
+                threads.set({
+                    status: $threads.status,
+                    message: $threads.message,
+                    data: [...$threads.data, e.data]
+                });
             })
             .catch(err => {
                 console.log(err);
@@ -86,6 +90,7 @@
                             class="file-input"
                             type="file"
                             name="file"
+                            required
                             bind:files />
                         <span class="file-cta">
                             <span class="file-icon">

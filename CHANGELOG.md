@@ -1,5 +1,19 @@
 # Version Changes of AngloChan
 
+## [0.8.0]
+
+### **Svelte**
+
+-   Threads now include images
+-   Image upload is required
+-   Threads list extra lifecycle based on response statuses [ok, empty, error]
+
+### **Laravel**
+
+-   Now support uploading/adding files
+-   Migration changes
+-   When clearing Uploads Model migration, the uploaded files will be cleared
+
 ## [0.7.3]
 
 ### **Svelte**

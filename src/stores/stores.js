@@ -1,7 +1,7 @@
 import {writable} from 'svelte/store';
 const axios = require('axios');
 
-export const threads = writable([]);
+export const threads = writable({});
 
 export const refresh = refreshBoards
 // Custom function to perform async request to grab boards list
@@ -10,6 +10,6 @@ async function refreshBoards(board){
     let res = await axios.get("/api/boards/list/?board_slug=" + board);
     let data = res.data;
     console.log("within async", data);
-    threads.set(data.data);
+    threads.set(data);
     return data;
 }

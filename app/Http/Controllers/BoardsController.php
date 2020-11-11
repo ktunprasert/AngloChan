@@ -6,20 +6,31 @@ use Illuminate\Http\Request;
 use App\Boards;
 use App\Posts;
 
-class BoardsController extends Controller
-{
-    public function get(Request $request){
+class BoardsController extends Controller {
+    public function get(Request $request) {
         $boards = Boards::all();
         return [
             "status" => "ok",
             "data" => $boards
         ];
     }
-    
-    public function list(Request $request){
-        if ($request->has("board_slug") && $request->filled("board_slug")){
+
+    public function list(Request $request) {
+        if ($request->has("board_slug") && $request->filled("board_slug")) {
             $board = Boards::where("slug", $request->board_slug)->first();
-            $threads = Posts::where("board_id", $board->id)->where("is_thread", true)->get();
+            if (!$board) {
+                return [
+                    "status" => "error",
+                    "message" => "Board not found"
+                ];
+            }
+            $threads = Posts::with(["upload"])->where("board_id", $board->id)->where("is_thread", true)->get();
+            if (!$threads->count()) {
+                return [
+                    "status" => "empty",
+                    "message" => "No threads found"
+                ];
+            }
             return [
                 "status" => "ok",
                 "data" => $threads
