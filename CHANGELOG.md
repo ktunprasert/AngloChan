@@ -1,5 +1,14 @@
 # Version Changes of AngloChan
 
+## [0.9.0]
+
+### **Svelte**
+
+-   Lifecycle method changes on Boards list, when switching board the threads list is set to empty
+-   Hotfix - When adding new thread(s) to a board the status message is changed to trigger a conditional render `message = empty` -> `message = ok`
+-   Changed boards list to be a global variable provided by the store, subscribed by Nav and Homepage (Prevents 'async' rendering)
+-   Adjusted components to be within the boards.index page rather than the boards.\_layout, the latter enforces inheritance which is unintended
+
 ## [0.8.0]
 
 ### **Svelte**

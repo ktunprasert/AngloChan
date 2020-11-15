@@ -1,12 +1,10 @@
 <script>
-    import { metatags, url } from "@sveltech/routify";
-    const axios = require("axios");
+    import { metatags, url, isChangingPage } from "@sveltech/routify";
+    import { boards, refresh_boards } from "../../stores/stores.js";
 
-    async function getBoards() {
-        const boards = await axios.get("/api/boards");
-        return boards;
+    $: {
+        if (!$isChangingPage) refresh_boards();
     }
-    let boards = getBoards();
 </script>
 
 <style>
@@ -27,15 +25,12 @@
     }
 </style>
 
-{#await boards}
-    <nav id="nav">Loading boards...</nav>
-{:then { data }}
+{#if $boards.status === 'ok'}
     <nav id="nav">
-        {#each data.data as v}<a href={$url('/' + v.slug)}>/{v.slug}/</a>{/each}
+        {#each $boards.data as v}
+            <a href={$url('/' + v.slug)}>/{v.slug}/</a>
+        {:else}No boards fouund...{/each}
     </nav>
-    <hr class="" />
-    <!-- <aside class="menu">
-        <ul class="menu-list">
-        </ul>
-    </aside> -->
-{/await}
+{:else}
+    <nav id="nav">Loading boards...</nav>
+{/if}

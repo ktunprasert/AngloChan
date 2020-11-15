@@ -1,16 +1,27 @@
 <script>
     import { params, url } from "@sveltech/routify";
     import { onDestroy, onMount } from "svelte";
-    import { threads, refresh } from "../../stores/stores";
+    import { threads, refresh_threads } from "../../stores/stores";
     import { isChangingPage } from "@sveltech/routify";
+    import AddThread from "../_components/AddThread.svelte";
     // Grab the board slug from route parameter
-    refresh($params.board);
+    // refresh_threads($params.board);
     $: {
         // console.log($isChangingPage);
         // Life Cycle variable which triggers 'false' when a page has stopped transitioning
         // a.k.a final destination is current page and has stopped
+
+        // This is reactive due to the in-change between Routify Hierarchy
+        // since a component is considered generated, switching between board without making threads_list reactive
+        // will not grab the new board's threads
         if (!$isChangingPage) {
-            refresh($params.board);
+            refresh_threads($params.board);
+        } else {
+            // Lifecycle method, when a page is "Changing" empty the list of threads for smooth transition
+            threads.set({
+                status: "empty",
+                data: []
+            });
         }
     }
     onDestroy(() => {
@@ -19,7 +30,8 @@
 </script>
 
 <style>
-    .board_view {
+    .board_view,
+    .action_list {
         max-width: 1200px;
         margin: 1rem auto;
     }
@@ -29,35 +41,47 @@
         grid-gap: 10px;
     }
     .threads_list .card img {
-        object-fit: cover;
+        object-fit: contain;
     }
 </style>
 
-<div class="board_view">
-    <!-- <button
+<h1 class="is-size-1 has-text-weight-bold has-text-centered has-text-black">
+    /{$params.board}/
+</h1>
+<AddThread />
+<div class="action_list">
+    <button
         class="button is-small"
-        on:click={refresh($params.board)}>Refresh</button> -->
+        on:click={refresh_threads($params.board)}>Refresh</button>
+</div>
+<div class="board_view">
     <div class="threads_list">
         {#if $threads.status == 'ok'}
             {#each $threads.data as t}
                 <div class="card">
                     <div class="card-image">
-                        <figure class="image is-4by3">
-                            {#if t.upload}
-                                <img
-                                    src={`/uploads/${t.upload.file_path}`}
-                                    alt={t.upload.file_name} />
-                            {:else}
-                                <img
-                                    src="https://bulma.io/images/placeholders/1280x960.png"
-                                    alt="Placeholder image" />
-                            {/if}
-                        </figure>
+                        <a href={$url(`../thread/${t.id}`)}>
+                            <figure class="image is-4by3">
+                                {#if t.upload}
+                                    <img
+                                        src={`/uploads/${t.upload.file_path}`}
+                                        alt={t.upload.file_name} />
+                                {:else}
+                                    <!-- svelte-ignore a11y-img-redundant-alt -->
+                                    <img
+                                        src="https://bulma.io/images/placeholders/1280x960.png"
+                                        alt="Placeholder image" />
+                                {/if}
+                            </figure>
+                        </a>
                     </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-content">
-                                <p class="title is-4">{t.title}</p>
+                                <p class="title is-4">
+                                    <a
+                                        href={$url(`../thread/${t.id}`)}>{t.title}</a>
+                                </p>
                                 <p class="subtitle is-6">Anonymous</p>
                             </div>
                         </div>
@@ -67,6 +91,6 @@
             {:else}Loading...{/each}
         {:else if $threads.status == 'empty'}
             No threads found...
-        {:else}{$threads.message}{/if}
+        {:else}{$threads.message ?? 'Loading...'}{/if}
     </div>
 </div>

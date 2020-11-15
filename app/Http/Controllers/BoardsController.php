@@ -21,14 +21,16 @@ class BoardsController extends Controller {
             if (!$board) {
                 return [
                     "status" => "error",
-                    "message" => "Board not found"
+                    "message" => "Board not found",
+                    "data" => []
                 ];
             }
-            $threads = Posts::with(["upload"])->where("board_id", $board->id)->where("is_thread", true)->get();
+            $threads = Posts::with(["upload"])->where("board_id", $board->id)->where("is_thread", true)->orderBy("created_at", "desc")->get();
             if (!$threads->count()) {
                 return [
                     "status" => "empty",
-                    "message" => "No threads found"
+                    "message" => "No threads found",
+                    "data" => []
                 ];
             }
             return [

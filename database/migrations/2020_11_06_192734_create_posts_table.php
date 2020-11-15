@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration {
             $table->boolean("is_thread")->default(false);
             $table->integer("replies")->default(0);
             $table->boolean("is_sticky")->default(false);
+            $table->dateTime("latest_reply")->nullable();
             $table->timestamps();
         });
     }

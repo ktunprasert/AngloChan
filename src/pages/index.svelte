@@ -1,13 +1,15 @@
 <script>
     import { metatags, url } from "@sveltech/routify";
+    import { boards, refresh_boards } from "../stores/stores.js";
+    import { isChangingPage } from "@sveltech/routify";
     metatags.title = "AngloChan";
     metatags.description = "A Chan for retards";
 
-    async function getBoards() {
-        const boards = await axios.get("/api/boards");
-        return boards;
+    $: {
+        if (!$isChangingPage) {
+            refresh_boards();
+        }
     }
-    let boards = getBoards();
 </script>
 
 <style>
@@ -22,18 +24,16 @@
 
 <main>
     <div class="boards_list">
-        {#await boards}
-            Loading boards....
-        {:then { data }}
+        {#if $boards.status === 'ok'}
             <aside class="menu">
                 <ul class="menu-list">
-                    {#each data.data as b}
+                    {#each $boards.data as b}
                         <li>
                             <a href={`/${b.slug}/`}>/{b.slug}/ - {b.name}</a>
                         </li>
-                    {/each}
+                    {:else}No boards found...{/each}
                 </ul>
             </aside>
-        {/await}
+        {:else}Loading boards...{/if}
     </div>
 </main>

@@ -26,11 +26,19 @@
             })
             .then(e => {
                 // If the thread was successfully updated, append the boardslist
+                console.log($threads, e);
+                let data = [];
+                if (!$threads.data) {
+                    data = [e];
+                } else {
+                    data = [e.data, ...$threads.data];
+                }
                 threads.set({
-                    status: $threads.status,
-                    message: $threads.message,
-                    data: [...$threads.data, e.data]
+                    status: "ok",
+                    message: "",
+                    data
                 });
+                console.log($threads);
             })
             .catch(err => {
                 console.log(err);
