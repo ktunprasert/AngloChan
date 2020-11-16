@@ -72,7 +72,7 @@
     };
 </script>
 
-<style>
+<style lang="scss" global>
     .board_view,
     .action_list {
         max-width: 1200px;
@@ -86,15 +86,24 @@
     .threads_list .card img {
         object-fit: cover;
     }
+    .card {
+        background-color: #1c1c1c;
+        &-image {
+            background-color: lighten(#1c1c1c, 10%);
+        }
+    }
+    .post-name {
+        color: #7c2d2d;
+    }
 </style>
 
-<h1 class="is-size-1 has-text-weight-bold has-text-centered has-text-black">
+<h1 class="is-size-1 has-text-weight-bold has-text-centered">
     /{$params.board}/
 </h1>
 <AddThread />
 <div class="action_list">
     <button
-        class="button is-small"
+        class="button is-small is-dark"
         on:click={refresh_threads($params.board)}>Refresh</button>
     <div class="select is-small">
         <!-- svelte-ignore a11y-no-onchange -->
@@ -136,7 +145,7 @@
                                     <a
                                         href={$url(`../thread/${t.id}`)}>{t.title}</a>
                                 </p>
-                                <p class="subtitle is-6">Anonymous</p>
+                                <p class="subtitle is-6 post-name">Anonymous</p>
                             </div>
                         </div>
                         <div class="content">{t.content}</div>

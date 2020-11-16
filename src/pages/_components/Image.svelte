@@ -7,10 +7,13 @@
     let hoverEl = document.createElement("img");
     hoverEl.className = "imageHover";
     let id = Math.floor(Math.random() * 1000000);
-    hoverEl.id = "img_" + id;
-    hoverEl.src = src;
+    $: {
+        hoverEl.id = "img_" + id;
+        hoverEl.src = src;
+    }
 
     const imgHover = el => {
+        console.log(hoverEl.src);
         document.body.appendChild(hoverEl);
     };
 

@@ -111,7 +111,7 @@
             <div class="field-label" />
             <div class="field-body">
                 <input name="board" type="hidden" bind:value />
-                <button class="button is-small">Submit</button>
+                <button class="button is-small is-dark">Submit</button>
             </div>
         </div>
     </form>

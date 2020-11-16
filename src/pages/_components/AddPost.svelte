@@ -111,7 +111,7 @@
             <div class="field-body">
                 <input type="hidden" name="thread_id" bind:value={$params.id} />
                 <input name="board" type="hidden" bind:value />
-                <button class="button is-small">Submit</button>
+                <button class="button is-small is-dark">Submit</button>
             </div>
         </div>
     </form>

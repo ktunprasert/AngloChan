@@ -24,15 +24,30 @@
         display: flex;
         margin: 0.5rem 0;
         &__image {
+            max-height: 300px;
             width: 100%;
             max-width: calc(300px - 1.5rem);
             margin-right: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            img {
+                height: 100%;
+                object-fit: contain;
+            }
         }
         &__card {
             width: 100%;
+            background: #1c1c1c;
+            .post-title {
+                color: #aaa;
+            }
+            .post-name {
+                color: #7c2d2d;
+            }
+            .post-date {
+                color: #d9d9d9;
+            }
         }
     }
     .field-label {
@@ -63,11 +78,12 @@
                         <p class="card-header-title">
                             {#if p.is_thread}
                                 <span
-                                    class="is-size-5 has-text-weight-bold">{p.title}</span>
+                                    class="is-size-5 has-text-weight-bold post-title">{p.title}</span>
                             {/if}
-                            <span class="mx-1">{p.name ?? 'Anonymous'}</span>
+                            <span
+                                class="mx-1 post-name">{p.name ?? 'Anonymous'}</span>
                             <time
-                                class="mx-1">{new Date(p.created_at).toLocaleString()}</time>
+                                class="mx-1 post-date">{new Date(p.created_at).toLocaleString()}</time>
                         </p>
                     </header>
                     <p class="card-content">{p.content}</p>

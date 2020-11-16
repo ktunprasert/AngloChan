@@ -1,6 +1,25 @@
 $body-family: "Mulish";
 $menu-item-hover-background-color: darken(#f4f4f4, 10%);
-// $background: darken("#f4f4f4", 20%);
+$t-clr: #d9d9d9;
+$l-clr: #2d7c7c;
+$bg-clr: #2c2c2c;
+
+$text: $t-clr;
+$input-color: $t-clr;
+$link: $l-clr;
+$link-hover: lighten($l-clr, 10%);
+
+$input-border-color: lighten($bg-clr, 10%);
+$input-hover-border-color: lighten($bg-clr, 10%);
+$file-border-color: lighten($bg-clr, 10%);
+$file-cta-background-color: $bg-clr;
+$file-cta-border-color: ligthen($bg-clr, 10%);
+$file-cta-hover-color: $t-clr;
+$file-cta-active-color: $t-clr;
+$file-name-border-color: lighten($bg-clr, 10%);
+$input-focus-border-color: $l-clr;
+$input-background-color: $bg-clr;
+
 h1,h2,h3,h4,h5,h6{
     font-family: "Nunito Sans";
     font-weight: 700;

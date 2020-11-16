@@ -3,5 +3,5 @@
 </script>
 
 <Nav />
-<div class="logo"><a href="/"><img src="/images/logo.png" alt="" /></a></div>
+<div class="logo"><a href="/"><img src="/images/logo_white.png" alt="" /></a></div>
 <slot />

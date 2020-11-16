@@ -1,5 +1,13 @@
 # Version Changes of AngloChan
 
+## [staging]
+
+### **Svelte**
+
+-   Hotfix - Fixing single post image size cover, it should no longer overflow if vertical image
+-   App styles changed to dark
+-   Hotfix - When sorting boards or boards changing order, the hover elements gets saved from last state
+
 ## [0.11.0]
 
 ### **Svelte**
