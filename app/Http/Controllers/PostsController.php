@@ -51,9 +51,11 @@ class PostsController extends Controller {
                 $thumbnail = implode(".", explode(".", $file_path, -1)) . ".jpg";
                 if (config("app.env") === "local") {
                     putenv('PATH="C:\Program Files\ImageMagick-7.0.8-Q16\"');
+                } else {
+                    putenv('PATH="/usr/local/bin/"')
                 }
                 $out = shell_exec("ffmpeg -y -i {$tmp} -vframes 1 -filter:v scale='-1:300' \"thumbnails/" . $thumbnail . "\" 2>&1");
-                dd(["ffmpeg -y -i {$tmp} -vframes 1 -filter:v scale='-1:300' \"thumbnails/" . $thumbnail . "\" 2>&1", $out]);
+                $post->out = $out;
             } else {
                 Image::make($request->file)->resize(300, 300, function ($constraint) {
                     $constraint->aspectRatio();
