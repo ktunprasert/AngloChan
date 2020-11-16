@@ -46,9 +46,18 @@ class PostsController extends Controller {
             $file_path = implode(".", explode(".", $fn, -1)) . ".{$file->hashName()}";
 
             // Make the thumbnail
-            Image::make($request->file)->resize(300, 300, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save("thumbnails/" . $file_path);
+            if ($mime == "video/webm") {
+                $tmp = $_FILES['file']['tmp_name'];
+                $thumbnail = implode(".", explode(".", $file_path, -1)) . ".jpg";
+                if (config("app.env") === "local") {
+                    putenv('PATH="C:\Program Files\ImageMagick-7.0.8-Q16\"');
+                }
+                shell_exec("ffmpeg -y -i {$tmp} -vframes 1 -filter:v scale='-1:300' \"thumbnails/" . $thumbnail . "\" 2>&1");
+            } else {
+                Image::make($request->file)->resize(300, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save("thumbnails/" . $file_path);
+            }
 
             if ($file->move("uploads", $file_path)) {
                 $upload->file_name   = $fn;

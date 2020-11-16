@@ -1,6 +1,18 @@
 # Version Changes of AngloChan
 
-## [staging]
+## [0.14.0]
+
+### **Svelte**
+
+-   Conditional display when a file is a `video/webm`
+-   Video Autoplay (Requires browser permission)
+-   Video and image toggle within single view
+
+### **Laravel**
+
+-   Thumbnails generation for WebMs
+
+## [0.13.0]
 
 ### **Svelte**
 

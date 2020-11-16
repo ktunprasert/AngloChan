@@ -35,6 +35,9 @@
                 height: 100%;
                 object-fit: contain;
             }
+            &.expanded{
+                max-height: unset;
+            }
         }
         &__card {
             width: 100%;
@@ -61,16 +64,9 @@
         {#each $posts.data as p}
             <div class="single_post">
                 {#if p.upload}
-                    <a
-                        class="single_post__image"
-                        href={'/uploads/' + p.upload.file_path}
-                        target="_blank">
-                        <Image
-                            cls=""
-                            src={'/thumbnails/' + p.upload.file_path}
-                            full={'/uploads/' + p.upload.file_path}
-                            alt={p.upload.file_name} />
-                    </a>
+                    <!-- <a class="single_post__image" target="_blank"> -->
+                    <Image file={p.upload} post_view={true} />
+                    <!-- </a> -->
                 {:else}
                     <div class="single_post__image" />
                 {/if}

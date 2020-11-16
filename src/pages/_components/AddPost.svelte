@@ -9,7 +9,6 @@
         if (files) {
             fileName = files[0].name;
         }
-        console.log(files);
     }
     // Using FormData to support file addition alongside JSON structure
     async function threadSubmit() {

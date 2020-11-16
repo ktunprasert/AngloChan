@@ -1,7 +1,7 @@
 <script>
     import { params, url } from "@sveltech/routify";
     import { onDestroy, onMount } from "svelte";
-    import { threads, refresh_threads } from "../../stores/stores";
+    import { threads, boards, refresh_threads } from "../../stores/stores";
     import { isChangingPage } from "@sveltech/routify";
     import AddThread from "../_components/AddThread.svelte";
     import Image from "../_components/Image.svelte";
@@ -51,13 +51,9 @@
         let collection = collect($threads.data);
         switch (e.target.value) {
             case "reply":
-                // by most reply
-                // console.log(collection.sortBy("replies"), collection);
                 collection = collection.sortByDesc("replies");
-                // collection
                 break;
             case "updated":
-                // console.log(collection);
                 collection = collection.sortByDesc("updated_at");
                 break;
             case "created":
@@ -134,10 +130,7 @@
                         <a href={$url(`../thread/${t.id}`)}>
                             <figure class="image is-4by3">
                                 {#if t.upload}
-                                    <Image
-                                        full={`/uploads/${t.upload.file_path}`}
-                                        src={`/thumbnails/${t.upload.file_path}`}
-                                        alt={t.upload.file_name} />
+                                    <Image file={t.upload} />
                                 {:else}
                                     <!-- svelte-ignore a11y-img-redundant-alt -->
                                     <img
