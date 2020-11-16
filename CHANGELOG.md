@@ -1,5 +1,13 @@
 # Version Changes of AngloChan
 
+## [0.11.0]
+
+### **Svelte**
+
+-   Posts sorting
+-   Hotfix - Image hover should be `position: fixed`
+-   Hotfix - limiting textarea length for post content
+
 ## [0.10.0]
 
 ### **Svelte**

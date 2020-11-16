@@ -5,10 +5,24 @@
     import { isChangingPage } from "@sveltech/routify";
     import AddThread from "../_components/AddThread.svelte";
     import Image from "../_components/Image.svelte";
-    // Grab the board slug from route parameter
-    // refresh_threads($params.board);
+    const collect = require("collect.js");
+
+    let sortEl;
+    let sortOptions = [
+        {
+            label: "Latest Reply",
+            value: "updated"
+        },
+        {
+            label: "Created Date",
+            value: "created"
+        },
+        {
+            label: "Reply Count",
+            value: "reply"
+        }
+    ];
     $: {
-        // console.log($isChangingPage);
         // Life Cycle variable which triggers 'false' when a page has stopped transitioning
         // a.k.a final destination is current page and has stopped
 
@@ -16,7 +30,12 @@
         // since a component is considered generated, switching between board without making threads_list reactive
         // will not grab the new board's threads
         if (!$isChangingPage) {
-            refresh_threads($params.board);
+            // Always remember to sort threads after grabbing them from API
+            refresh_threads($params.board).then(e => {
+                if (sortEl) {
+                    sortEl.dispatchEvent(new Event("change"));
+                }
+            });
         } else {
             // Lifecycle method, when a page is "Changing" empty the list of threads for smooth transition
             threads.set({
@@ -28,6 +47,29 @@
     onDestroy(() => {
         threads.set({});
     });
+    const sortThreads = e => {
+        let collection = collect($threads.data);
+        switch (e.target.value) {
+            case "reply":
+                // by most reply
+                // console.log(collection.sortBy("replies"), collection);
+                collection = collection.sortByDesc("replies");
+                // collection
+                break;
+            case "updated":
+                // console.log(collection);
+                collection = collection.sortByDesc("updated_at");
+                break;
+            case "created":
+                collection = collection.sortBy("created_at");
+                break;
+        }
+        threads.set({
+            status: $threads.status ?? "ok",
+            message: $threads.message ?? "",
+            data: collection.toArray() ?? []
+        });
+    };
 </script>
 
 <style>
@@ -54,6 +96,14 @@
     <button
         class="button is-small"
         on:click={refresh_threads($params.board)}>Refresh</button>
+    <div class="select is-small">
+        <!-- svelte-ignore a11y-no-onchange -->
+        <select name="sort" on:change={sortThreads} bind:this={sortEl}>
+            {#each sortOptions as opt}
+                <option value={opt.value}>{opt.label}</option>
+            {/each}
+        </select>
+    </div>
 </div>
 <div class="board_view">
     <div class="threads_list">
