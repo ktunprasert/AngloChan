@@ -1,5 +1,11 @@
 # Version Changes of AngloChan
 
+## [0.15.0]
+
+### **Svelte**
+
+-   Hotfix - Lifecycle issue where image is out of sync with boards list
+
 ## [0.14.0]
 
 ### **Svelte**

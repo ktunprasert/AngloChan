@@ -8,29 +8,31 @@
         thumbnail,
         alt,
         view,
-        expanded = false;
-    let isVideo = file.mime_type === "video/webm";
-    if (isVideo) {
-        hoverEl = document.createElement("video");
-        hoverEl.loop = true;
-        thumbnail =
-            "/thumbnails/" +
-            file.file_path
-                .split(".")
-                .slice(0, -1)
-                .join(".") +
-            ".jpg";
-    } else {
-        hoverEl = document.createElement("img");
-        thumbnail = "/thumbnails/" + file.file_path;
-    }
-
-    hoverEl.src = "/uploads/" + file.file_path;
-    hoverEl.className = "imageHover";
-    view = thumbnail;
-    alt = file.file_name;
+        expanded = false,
+        isVideo;
     $: {
         console.log("post_view", post_view);
+
+        isVideo = file.mime_type === "video/webm";
+        if (isVideo) {
+            hoverEl = document.createElement("video");
+            hoverEl.loop = true;
+            thumbnail =
+                "/thumbnails/" +
+                file.file_path
+                    .split(".")
+                    .slice(0, -1)
+                    .join(".") +
+                ".jpg";
+        } else {
+            hoverEl = document.createElement("img");
+            thumbnail = "/thumbnails/" + file.file_path;
+        }
+
+        hoverEl.src = "/uploads/" + file.file_path;
+        hoverEl.className = "imageHover";
+        view = thumbnail;
+        alt = file.file_name;
         if (expanded) {
             view = "/uploads/" + file.file_path;
         } else {
@@ -108,7 +110,9 @@
     {:else}
         <!-- asdfasdfasdfasdf -->
         {#if isVideo}
-            <div class="playback single_post__image expanded" id={'img_' + file.id}>
+            <div
+                class="playback single_post__image expanded"
+                id={'img_' + file.id}>
                 <!-- svelte-ignore a11y-media-has-caption -->
                 <video src={view} controls autoplay />
                 <!-- svelte-ignore a11y-missing-attribute -->
@@ -116,16 +120,16 @@
                     <i class="fas fa-times fa-inverse" />
                 </a>
             </div>
-        {:else} 
+        {:else}
             <img
-            id={'img_' + file.id}
-            class={'single_post__image expanded'}
-            src={view}
-            alt={alt ?? 'This is an image'}
-            style="min-height: 600px"
-            on:mouseenter={imgHover}
-            on:click={imgExpand}
-            on:mouseleave={imgCleanup} />
+                id={'img_' + file.id}
+                class={'single_post__image expanded'}
+                src={view}
+                alt={alt ?? 'This is an image'}
+                style="min-height: 600px"
+                on:mouseenter={imgHover}
+                on:click={imgExpand}
+                on:mouseleave={imgCleanup} />
         {/if}
     {/if}
 {/if}

@@ -33258,7 +33258,7 @@ function add_css() {
   style.id = "svelte-kqwi1c-style";
   style.textContent = ".imageHover{z-index:999999;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);max-height:80vh;max-width:65vw;object-fit:cover;box-shadow:0 0 0 100vw rgba(0, 0, 0, 0.5);pointer-events:none;background-color:rgba(0, 0, 0, 0.5)}img{object-fit:contain}.playback{position:relative}.playback .contract{position:absolute;top:5px;left:100%}";
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document_1.head, style);
-} // (110:4) {:else}
+} // (112:4) {:else}
 
 
 function create_else_block(ctx) {
@@ -33283,14 +33283,24 @@ function create_else_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, if_block_anchor, anchor);
     },
     p: function p(ctx, dirty) {
-      if_block.p(ctx, dirty);
+      if (current_block_type === (current_block_type = select_block_type_1(ctx, dirty)) && if_block) {
+        if_block.p(ctx, dirty);
+      } else {
+        if_block.d(1);
+        if_block = current_block_type(ctx);
+
+        if (if_block) {
+          if_block.c();
+          if_block.m(if_block_anchor.parentNode, if_block_anchor);
+        }
+      }
     },
     d: function d(detaching) {
       if_block.d(detaching);
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(if_block_anchor);
     }
   };
-} // (101:4) {#if !expanded}
+} // (103:4) {#if !expanded}
 
 
 function create_if_block_1(ctx) {
@@ -33364,7 +33374,7 @@ function create_if_block_1(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["run_all"])(dispose);
     }
   };
-} // (92:0) {#if !post_view}
+} // (94:0) {#if !post_view}
 
 
 function create_if_block(ctx) {
@@ -33436,7 +33446,7 @@ function create_if_block(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["run_all"])(dispose);
     }
   };
-} // (121:8) {:else}
+} // (125:8) {:else}
 
 
 function create_else_block_1(ctx) {
@@ -33511,7 +33521,7 @@ function create_else_block_1(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["run_all"])(dispose);
     }
   };
-} // (112:8) {#if isVideo}
+} // (114:8) {#if isVideo}
 
 
 function create_if_block_2(ctx) {
@@ -33637,22 +33647,8 @@ function instance($$self, $$props, $$invalidate) {
       thumbnail,
       alt,
       view,
-      expanded = false;
-  var isVideo = file.mime_type === "video/webm";
-
-  if (isVideo) {
-    hoverEl = document.createElement("video");
-    hoverEl.loop = true;
-    thumbnail = "/thumbnails/" + file.file_path.split(".").slice(0, -1).join(".") + ".jpg";
-  } else {
-    hoverEl = document.createElement("img");
-    thumbnail = "/thumbnails/" + file.file_path;
-  }
-
-  hoverEl.src = "/uploads/" + file.file_path;
-  hoverEl.className = "imageHover";
-  view = thumbnail;
-  alt = file.file_name;
+      expanded = false,
+      isVideo;
 
   var imgHover = function imgHover(el) {
     document.body.appendChild(hoverEl);
@@ -33683,10 +33679,25 @@ function instance($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     if ($$self.$$.dirty &
-    /*post_view, expanded, file, thumbnail*/
-    39) {
+    /*post_view, file, isVideo, thumbnail, expanded*/
+    103) {
       $: {
         console.log("post_view", post_view);
+        $$invalidate(6, isVideo = file.mime_type === "video/webm");
+
+        if (isVideo) {
+          hoverEl = document.createElement("video");
+          hoverEl.loop = true;
+          $$invalidate(2, thumbnail = "/thumbnails/" + file.file_path.split(".").slice(0, -1).join(".") + ".jpg");
+        } else {
+          hoverEl = document.createElement("img");
+          $$invalidate(2, thumbnail = "/thumbnails/" + file.file_path);
+        }
+
+        hoverEl.src = "/uploads/" + file.file_path;
+        hoverEl.className = "imageHover";
+        $$invalidate(4, view = thumbnail);
+        $$invalidate(3, alt = file.file_name);
 
         if (expanded) {
           $$invalidate(4, view = "/uploads/" + file.file_path);
