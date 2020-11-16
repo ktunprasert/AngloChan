@@ -1,5 +1,11 @@
 # Version Changes of AngloChan
 
+## [0.15.1]
+
+### **Svelte**
+
+-   Hotfix - Loading a board page no longer sends multiple GET requests to grab list of threads
+
 ## [0.15.0]
 
 ### **Svelte**

@@ -25,7 +25,7 @@ class BoardsController extends Controller {
                     "data" => []
                 ];
             }
-            $threads = Posts::with(["upload"])->where("board_id", $board->id)->where("is_thread", true)->orderBy("created_at", "desc")->get();
+            $threads = Posts::with(["upload"])->where("board_id", $board->id)->where("is_thread", true)->orderBy("updated_at", "desc")->get();
             if (!$threads->count()) {
                 return [
                     "status" => "empty",

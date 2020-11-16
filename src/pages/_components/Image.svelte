@@ -1,7 +1,8 @@
 <script>
     export let file;
     export let post_view = false;
-    import { onDestroy } from "svelte";
+    import { onDestroy, onMount } from "svelte";
+    import { isChangingPage } from "@sveltech/routify";
 
     // Initiate file
     let hoverEl,
@@ -11,7 +12,7 @@
         expanded = false,
         isVideo;
     $: {
-        console.log("post_view", post_view);
+        // console.log("post_view", post_view);
 
         isVideo = file.mime_type === "video/webm";
         if (isVideo) {
@@ -58,6 +59,7 @@
     };
 
     onDestroy(() => {
+        console.log("destroy!!");
         imgCleanup();
     });
 </script>

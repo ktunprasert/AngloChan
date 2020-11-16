@@ -1,8 +1,7 @@
 <script>
     import { params, url } from "@sveltech/routify";
     import { onDestroy, onMount } from "svelte";
-    import { threads, boards, refresh_threads } from "../../stores/stores";
-    import { isChangingPage } from "@sveltech/routify";
+    import { threads, refresh_threads } from "../../stores/stores";
     import AddThread from "../_components/AddThread.svelte";
     import Image from "../_components/Image.svelte";
     const collect = require("collect.js");
@@ -22,31 +21,20 @@
             value: "reply"
         }
     ];
-    $: {
-        // Life Cycle variable which triggers 'false' when a page has stopped transitioning
-        // a.k.a final destination is current page and has stopped
 
-        // This is reactive due to the in-change between Routify Hierarchy
-        // since a component is considered generated, switching between board without making threads_list reactive
-        // will not grab the new board's threads
-        if (!$isChangingPage) {
-            // Always remember to sort threads after grabbing them from API
-            refresh_threads($params.board).then(e => {
-                if (sortEl) {
-                    sortEl.dispatchEvent(new Event("change"));
-                }
-            });
-        } else {
-            // Lifecycle method, when a page is "Changing" empty the list of threads for smooth transition
-            threads.set({
-                status: "empty",
-                data: []
-            });
-        }
+    $: {
     }
+
+    onMount(() => {
+        if (sortEl) {
+            sortEl.dispatchEvent(new Event("change"));
+        }
+    });
+
     onDestroy(() => {
         threads.set({});
     });
+
     const sortThreads = e => {
         let collection = collect($threads.data);
         switch (e.target.value) {
@@ -66,6 +54,15 @@
             data: collection.toArray() ?? []
         });
     };
+
+    async function refresh() {
+        await refresh_threads($params.board).then(e => {
+            if (sortEl) {
+                sortEl.dispatchEvent(new Event("change"));
+            }
+            ajaxFired = false;
+        });
+    }
 </script>
 
 <style lang="scss" global>
@@ -104,9 +101,7 @@
 </h1>
 <AddThread />
 <div class="action_list">
-    <button
-        class="button is-small is-dark"
-        on:click={refresh_threads($params.board)}>Refresh</button>
+    <button class="button is-small is-dark" on:click={refresh}>Refresh</button>
     <div class="select is-small">
         <!-- svelte-ignore a11y-no-onchange -->
         <select name="sort" on:change={sortThreads} bind:this={sortEl}>
