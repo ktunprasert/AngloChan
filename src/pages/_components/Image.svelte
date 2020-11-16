@@ -2,6 +2,7 @@
     export let src;
     export let alt;
     export let cls;
+    export let full;
     import { onDestroy } from "svelte";
 
     let hoverEl = document.createElement("img");
@@ -9,7 +10,7 @@
     let id = Math.floor(Math.random() * 1000000);
     $: {
         hoverEl.id = "img_" + id;
-        hoverEl.src = src;
+        hoverEl.src = full;
     }
 
     const imgHover = el => {
@@ -27,6 +28,7 @@
 
 <style lang="scss" global>
     .imageHover {
+        z-index: 999999;
         position: fixed;
         top: 50%;
         left: 50%;

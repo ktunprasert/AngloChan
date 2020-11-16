@@ -92,6 +92,7 @@
                             class="file-input"
                             type="file"
                             name="file"
+                            accept=".jpg,.jpeg,.png,.webm,.gif"
                             bind:files />
                         <span class="file-cta">
                             <span class="file-icon">

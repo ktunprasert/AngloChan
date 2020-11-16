@@ -83,13 +83,19 @@
         grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
         grid-gap: 10px;
     }
-    .threads_list .card img {
-        object-fit: cover;
-    }
     .card {
         background-color: #1c1c1c;
+        position: relative;
         &-image {
             background-color: lighten(#1c1c1c, 10%);
+        }
+        .tag {
+            z-index: 1;
+            pointer-events: none;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #7c2d2d !important;
         }
     }
     .post-name {
@@ -119,16 +125,19 @@
         {#if $threads.status == 'ok'}
             {#each $threads.data as t}
                 <div class="card">
+                    <div class="tag is-small is-dark">
+                        {t.replies}
+                        /
+                        {t.files}
+                    </div>
                     <div class="card-image">
                         <a href={$url(`../thread/${t.id}`)}>
                             <figure class="image is-4by3">
                                 {#if t.upload}
                                     <Image
-                                        src={`/uploads/${t.upload.file_path}`}
+                                        full={`/uploads/${t.upload.file_path}`}
+                                        src={`/thumbnails/${t.upload.file_path}`}
                                         alt={t.upload.file_name} />
-                                    <!-- <img
-                                        src={`/uploads/${t.upload.file_path}`}
-                                        alt={t.upload.file_name} /> -->
                                 {:else}
                                     <!-- svelte-ignore a11y-img-redundant-alt -->
                                     <img

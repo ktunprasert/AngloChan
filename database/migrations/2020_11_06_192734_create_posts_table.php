@@ -21,7 +21,8 @@ class CreatePostsTable extends Migration {
             $table->longText("content");
             $table->boolean("has_file")->default(true);
             $table->boolean("is_thread")->default(false);
-            $table->integer("replies")->default(0);
+            $table->integer("replies")->default(1);
+            $table->integer("files")->default(1);
             $table->boolean("is_sticky")->default(false);
             $table->dateTime("latest_reply")->nullable();
             $table->timestamps();

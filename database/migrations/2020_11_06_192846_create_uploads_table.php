@@ -34,6 +34,11 @@ class CreateUploadsTable extends Migration {
         $uploads = Uploads::all();
         foreach ($uploads as $u) {
             File::delete("public/uploads/{$u->file_path}");
+            try {
+                File::delete("public/uploads/{$u->file_path}");
+            } catch (Exception $e) {
+                continue;
+            }
         }
         Schema::dropIfExists('uploads');
     }

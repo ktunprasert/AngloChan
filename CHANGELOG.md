@@ -4,6 +4,21 @@
 
 ### **Svelte**
 
+-   Hotfix - posts within a thread should check if `posts.is_thread` using a `tinyint` rather than `boolean`
+-   Hotfix - Boards should list the name as well as slug
+-   File upload now only supports images and webm
+
+### **Laravel**
+
+-   Migration changes to include files count and replies count defaulting to 1 (counts itself)
+-   Extra validation for only images + webm
+-   Added Laravel dependency for generating thumbnails
+-   Thumbnails are now generated on file upload
+
+## [0.12.0]
+
+### **Svelte**
+
 -   Hotfix - Fixing single post image size cover, it should no longer overflow if vertical image
 -   App styles changed to dark
 -   Hotfix - When sorting boards or boards changing order, the hover elements gets saved from last state

@@ -67,7 +67,8 @@
                         target="_blank">
                         <Image
                             cls=""
-                            src={'/uploads/' + p.upload.file_path}
+                            src={'/thumbnails/' + p.upload.file_path}
+                            full={'/uploads/' + p.upload.file_path}
                             alt={p.upload.file_name} />
                     </a>
                 {:else}
@@ -76,7 +77,7 @@
                 <div class="card single_post__card">
                     <header class="card-header">
                         <p class="card-header-title">
-                            {#if p.is_thread}
+                            {#if p.is_thread == 1}
                                 <span
                                     class="is-size-5 has-text-weight-bold post-title">{p.title}</span>
                             {/if}

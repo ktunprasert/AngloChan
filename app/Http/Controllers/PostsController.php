@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Posts;
 use App\Boards;
+use Image;
 use App\Uploads;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             "board" => "required",
             // "title" => "required",
+            "file.*" => "mimes:jpeg,jpg,gif,png,webm|max:8192",
             "content" => "required"
         ]);
         $board = Boards::where("slug", $request->board)->first();
@@ -29,6 +32,9 @@ class PostsController extends Controller {
         if ($post->thread_id) {
             $thread = Posts::find($request->thread_id);
             $thread->replies += 1;
+            if ($request->has("file") && $request->file->getSize()) {
+                $thread->files += 1;
+            }
             $thread->save();
         }
 
@@ -38,6 +44,12 @@ class PostsController extends Controller {
             $fn        = $file->getClientOriginalName();
             $mime      = $file->getMimeType();
             $file_path = implode(".", explode(".", $fn, -1)) . ".{$file->hashName()}";
+
+            // Make the thumbnail
+            Image::make($request->file)->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save("thumbnails/" . $file_path);
+
             if ($file->move("uploads", $file_path)) {
                 $upload->file_name   = $fn;
                 $upload->file_path   = $file_path;

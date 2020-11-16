@@ -30605,8 +30605,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function add_css() {
   var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
-  style.id = "svelte-rnc2pk-style";
-  style.textContent = ".board_view,.action_list{max-width:1200px;margin:1rem auto}.threads_list{display:grid;grid-template-columns:repeat(auto-fill, minmax(275px, 1fr));grid-gap:10px}.threads_list .card img{object-fit:cover}.card{background-color:#1c1c1c}.card-image{background-color:#363636}.post-name{color:#7c2d2d}";
+  style.id = "svelte-csbuz8-style";
+  style.textContent = ".board_view,.action_list{max-width:1200px;margin:1rem auto}.threads_list{display:grid;grid-template-columns:repeat(auto-fill, minmax(275px, 1fr));grid-gap:10px}.card{background-color:#1c1c1c;position:relative}.card-image{background-color:#363636}.card .tag{z-index:1;pointer-events:none;position:absolute;top:5px;right:5px;background-color:#7c2d2d !important}.post-name{color:#7c2d2d}";
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document.head, style);
 }
 
@@ -30620,7 +30620,7 @@ function get_each_context_1(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[12] = list[i];
   return child_ctx;
-} // (115:12) {#each sortOptions as opt}
+} // (121:12) {#each sortOptions as opt}
 
 
 function create_each_block_1(ctx) {
@@ -30648,7 +30648,7 @@ function create_each_block_1(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(option);
     }
   };
-} // (161:8) {:else}
+} // (170:8) {:else}
 
 
 function create_else_block_2(ctx) {
@@ -30680,7 +30680,7 @@ function create_else_block_2(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
     }
   };
-} // (159:45) 
+} // (168:45) 
 
 
 function create_if_block_2(ctx) {
@@ -30699,7 +30699,7 @@ function create_if_block_2(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
     }
   };
-} // (123:8) {#if $threads.status == 'ok'}
+} // (129:8) {#if $threads.status == 'ok'}
 
 
 function create_if_block(ctx) {
@@ -30823,7 +30823,7 @@ function create_if_block(ctx) {
       if (each_1_else) each_1_else.d(detaching);
     }
   };
-} // (158:12) {:else}
+} // (167:12) {:else}
 
 
 function create_else_block_1(ctx) {
@@ -30839,7 +30839,7 @@ function create_else_block_1(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
     }
   };
-} // (136:32) {:else}
+} // (145:32) {:else}
 
 
 function create_else_block(ctx) {
@@ -30861,7 +30861,7 @@ function create_else_block(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(img);
     }
   };
-} // (129:32) {#if t.upload}
+} // (140:32) {#if t.upload}
 
 
 function create_if_block_1(ctx) {
@@ -30869,7 +30869,10 @@ function create_if_block_1(ctx) {
   var current;
   image = new _components_Image_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
     props: {
-      src: "/uploads/".concat(
+      full: "/uploads/".concat(
+      /*t*/
+      ctx[9].upload.file_path),
+      src: "/thumbnails/".concat(
       /*t*/
       ctx[9].upload.file_path),
       alt:
@@ -30889,7 +30892,12 @@ function create_if_block_1(ctx) {
       var image_changes = {};
       if (dirty &
       /*$threads*/
-      4) image_changes.src = "/uploads/".concat(
+      4) image_changes.full = "/uploads/".concat(
+      /*t*/
+      ctx[9].upload.file_path);
+      if (dirty &
+      /*$threads*/
+      4) image_changes.src = "/thumbnails/".concat(
       /*t*/
       ctx[9].upload.file_path);
       if (dirty &
@@ -30912,37 +30920,48 @@ function create_if_block_1(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(image, detaching);
     }
   };
-} // (124:12) {#each $threads.data as t}
+} // (130:12) {#each $threads.data as t}
 
 
 function create_each_block(ctx) {
-  var div5;
+  var div6;
   var div0;
+  var t0_value =
+  /*t*/
+  ctx[9].replies + "";
+  var t0;
+  var t1;
+  var t2_value =
+  /*t*/
+  ctx[9].files + "";
+  var t2;
+  var t3;
+  var div1;
   var a0;
   var figure;
   var current_block_type_index;
   var if_block;
   var a0_href_value;
-  var t0;
-  var div4;
+  var t4;
+  var div5;
+  var div3;
   var div2;
-  var div1;
   var p0;
   var a1;
-  var t1_value =
-  /*t*/
-  ctx[9].title + "";
-  var t1;
-  var a1_href_value;
-  var t2;
-  var p1;
-  var t4;
-  var div3;
   var t5_value =
   /*t*/
-  ctx[9].content + "";
+  ctx[9].title + "";
   var t5;
+  var a1_href_value;
   var t6;
+  var p1;
+  var t8;
+  var div4;
+  var t9_value =
+  /*t*/
+  ctx[9].content + "";
+  var t9;
+  var t10;
   var current;
   var if_block_creators = [create_if_block_1, create_else_block];
   var if_blocks = [];
@@ -30958,32 +30977,38 @@ function create_each_block(ctx) {
   if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
   return {
     c: function c() {
-      div5 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div6 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
       div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t0_value);
+      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])("\r\n                        /\r\n                        ");
+      t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t2_value);
+      t3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
       a0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("a");
       figure = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("figure");
       if_block.c();
-      t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-      div4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div5 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      div3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
       div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-      div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
       p0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("p");
       a1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("a");
-      t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t1_value);
-      t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-      p1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("p");
-      p1.textContent = "Anonymous";
-      t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-      div3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
       t5 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t5_value);
       t6 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      p1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("p");
+      p1.textContent = "Anonymous";
+      t8 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      div4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+      t9 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t9_value);
+      t10 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "tag is-small is-dark");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(figure, "class", "image is-4by3");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a0, "href", a0_href_value =
       /*$url*/
       ctx[3]("../thread/".concat(
       /*t*/
       ctx[9].id)));
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "card-image");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "card-image");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(a1, "href", a1_href_value =
       /*$url*/
       ctx[3]("../thread/".concat(
@@ -30991,34 +31016,49 @@ function create_each_block(ctx) {
       ctx[9].id)));
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(p0, "class", "title is-4");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(p1, "class", "subtitle is-6 post-name");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "media-content");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "media");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "content");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div4, "class", "card-content");
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div5, "class", "card");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "media-content");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "media");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div4, "class", "content");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div5, "class", "card-content");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div6, "class", "card");
     },
     m: function m(target, anchor) {
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div5, anchor);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, div0);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, a0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div6, anchor);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div6, div0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, t0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, t1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, t2);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div6, t3);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div6, div1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, a0);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(a0, figure);
       if_blocks[current_block_type_index].m(figure, null);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, t0);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, div4);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div4, div2);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, div1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, p0);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div6, t4);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div6, div5);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, div3);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div2);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, p0);
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(p0, a1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(a1, t1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t2);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, p1);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div4, t4);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div4, div3);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, t5);
-      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, t6);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(a1, t5);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, t6);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, p1);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, t8);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div5, div4);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div4, t9);
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div6, t10);
       current = true;
     },
     p: function p(ctx, dirty) {
+      if ((!current || dirty &
+      /*$threads*/
+      4) && t0_value !== (t0_value =
+      /*t*/
+      ctx[9].replies + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t0, t0_value);
+      if ((!current || dirty &
+      /*$threads*/
+      4) && t2_value !== (t2_value =
+      /*t*/
+      ctx[9].files + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t2, t2_value);
       var previous_block_index = current_block_type_index;
       current_block_type_index = select_block_type_1(ctx, dirty);
 
@@ -31053,9 +31093,9 @@ function create_each_block(ctx) {
 
       if ((!current || dirty &
       /*$threads*/
-      4) && t1_value !== (t1_value =
+      4) && t5_value !== (t5_value =
       /*t*/
-      ctx[9].title + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t1, t1_value);
+      ctx[9].title + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t5, t5_value);
 
       if (!current || dirty &
       /*$url, $threads*/
@@ -31069,9 +31109,9 @@ function create_each_block(ctx) {
 
       if ((!current || dirty &
       /*$threads*/
-      4) && t5_value !== (t5_value =
+      4) && t9_value !== (t9_value =
       /*t*/
-      ctx[9].content + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t5, t5_value);
+      ctx[9].content + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t9, t9_value);
     },
     i: function i(local) {
       if (current) return;
@@ -31083,7 +31123,7 @@ function create_each_block(ctx) {
       current = false;
     },
     d: function d(detaching) {
-      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div5);
+      if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div6);
       if_blocks[current_block_type_index].d();
     }
   };
@@ -31418,7 +31458,7 @@ var U5Bboardu5D = /*#__PURE__*/function (_SvelteComponent) {
     _classCallCheck(this, U5Bboardu5D);
 
     _this = _super.call(this);
-    if (!document.getElementById("svelte-rnc2pk-style")) add_css();
+    if (!document.getElementById("svelte-csbuz8-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {});
     return _this;
   }
@@ -31494,7 +31534,7 @@ function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[3] = list[i];
   return child_ctx;
-} // (100:4) {:else}
+} // (101:4) {:else}
 
 
 function create_else_block_2(ctx) {
@@ -31637,7 +31677,7 @@ function create_if_block(ctx) {
       if (each_1_else) each_1_else.d(detaching);
     }
   };
-} // (99:8) {:else}
+} // (100:8) {:else}
 
 
 function create_else_block_1(ctx) {
@@ -31653,7 +31693,7 @@ function create_else_block_1(ctx) {
       if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
     }
   };
-} // (80:16) {:else}
+} // (81:16) {:else}
 
 
 function create_else_block(ctx) {
@@ -31684,7 +31724,10 @@ function create_if_block_2(ctx) {
   image = new _components_Image_svelte__WEBPACK_IMPORTED_MODULE_3__["default"]({
     props: {
       cls: "",
-      src: "/uploads/" +
+      src: "/thumbnails/" +
+      /*p*/
+      ctx[3].upload.file_path,
+      full: "/uploads/" +
       /*p*/
       ctx[3].upload.file_path,
       alt:
@@ -31711,7 +31754,12 @@ function create_if_block_2(ctx) {
       var image_changes = {};
       if (dirty &
       /*$posts*/
-      1) image_changes.src = "/uploads/" +
+      1) image_changes.src = "/thumbnails/" +
+      /*p*/
+      ctx[3].upload.file_path;
+      if (dirty &
+      /*$posts*/
+      1) image_changes.full = "/uploads/" +
       /*p*/
       ctx[3].upload.file_path;
       if (dirty &
@@ -31743,7 +31791,7 @@ function create_if_block_2(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(image);
     }
   };
-} // (86:28) {#if p.is_thread}
+} // (87:28) {#if p.is_thread == 1}
 
 
 function create_if_block_1(ctx) {
@@ -31820,7 +31868,7 @@ function create_each_block(ctx) {
   if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
   var if_block1 =
   /*p*/
-  ctx[3].is_thread && create_if_block_1(ctx);
+  ctx[3].is_thread == 1 && create_if_block_1(ctx);
   return {
     c: function c() {
       div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
@@ -31895,7 +31943,7 @@ function create_each_block(ctx) {
 
       if (
       /*p*/
-      ctx[3].is_thread) {
+      ctx[3].is_thread == 1) {
         if (if_block1) {
           if_block1.p(ctx, dirty);
         } else {
@@ -32514,6 +32562,7 @@ function create_fragment(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "class", "file-input");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "type", "file");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "name", "file");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "accept", ".jpg,.jpeg,.png,.webm,.gif");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(span2, "class", "file-cta");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(span3, "class", "file-name");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(label3, "class", "file-label");
@@ -32960,6 +33009,7 @@ function create_fragment(ctx) {
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "class", "file-input");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "type", "file");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "name", "file");
+      Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(input1, "accept", ".jpg,.jpeg,.png,.webm,.gif");
       input1.required = true;
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(span2, "class", "file-cta");
       Object(svelte_internal__WEBPACK_IMPORTED_MODULE_1__["attr"])(span3, "class", "file-name");
@@ -33261,8 +33311,8 @@ var document_1 = svelte_internal__WEBPACK_IMPORTED_MODULE_0__["globals"].documen
 
 function add_css() {
   var style = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("style");
-  style.id = "svelte-114wfx6-style";
-  style.textContent = ".imageHover{position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);max-height:80vh;max-width:65vw;object-fit:cover;box-shadow:0 0 0 100vw rgba(0, 0, 0, 0.5);pointer-events:none;background-color:rgba(0, 0, 0, 0.5)}img{object-fit:contain}";
+  style.id = "svelte-1lk6t0-style";
+  style.textContent = ".imageHover{z-index:999999;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);max-height:80vh;max-width:65vw;object-fit:cover;box-shadow:0 0 0 100vw rgba(0, 0, 0, 0.5);pointer-events:none;background-color:rgba(0, 0, 0, 0.5)}img{object-fit:contain}";
   Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(document_1.head, style);
 }
 
@@ -33343,6 +33393,7 @@ function instance($$self, $$props, $$invalidate) {
   var src = $$props.src;
   var alt = $$props.alt;
   var cls = $$props.cls;
+  var full = $$props.full;
   var hoverEl = document.createElement("img");
   hoverEl.className = "imageHover";
   var id = Math.floor(Math.random() * 1000000);
@@ -33364,20 +33415,21 @@ function instance($$self, $$props, $$invalidate) {
     if ("src" in $$props) $$invalidate(0, src = $$props.src);
     if ("alt" in $$props) $$invalidate(1, alt = $$props.alt);
     if ("cls" in $$props) $$invalidate(2, cls = $$props.cls);
+    if ("full" in $$props) $$invalidate(5, full = $$props.full);
   };
 
   $$self.$$.update = function () {
     if ($$self.$$.dirty &
-    /*src*/
-    1) {
+    /*full*/
+    32) {
       $: {
         hoverEl.id = "img_" + id;
-        hoverEl.src = src;
+        hoverEl.src = full;
       }
     }
   };
 
-  return [src, alt, cls, imgHover, imgCleanup];
+  return [src, alt, cls, imgHover, imgCleanup, full];
 }
 
 var Image = /*#__PURE__*/function (_SvelteComponent) {
@@ -33391,11 +33443,12 @@ var Image = /*#__PURE__*/function (_SvelteComponent) {
     _classCallCheck(this, Image);
 
     _this = _super.call(this);
-    if (!document_1.getElementById("svelte-114wfx6-style")) add_css();
+    if (!document_1.getElementById("svelte-1lk6t0-style")) add_css();
     Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(_assertThisInitialized(_this), options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {
       src: 0,
       alt: 1,
-      cls: 2
+      cls: 2,
+      full: 5
     });
     return _this;
   }
