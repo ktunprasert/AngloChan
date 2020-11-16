@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get("/boards", "BoardsController@get");
 Route::get("/boards/list", "BoardsController@list");
+Route::get("/thread", "PostsController@grab_thread");
 Route::post("/posts", "PostsController@store");

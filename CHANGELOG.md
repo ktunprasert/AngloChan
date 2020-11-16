@@ -1,5 +1,22 @@
 # Version Changes of AngloChan
 
+## [0.10.0]
+
+### **Svelte**
+
+-   Removed test.svelte
+-   Support for SCSS within Svelte component
+-   Individual thread view works and you can post replies
+-   Image hover component for a large image view
+-   New Component for Adding Post to a thread
+-   Adjusted thread posting lifecycle, it will no longer add threads client-sidedly, it will send a new request (solves concurrency)
+-   New Stores and Async method for Posts (posts within a thread)
+
+### **Laravel**
+
+-   Supports posting Threads, Single Post Reply (with and without an image)
+-   New method and API route for grabbing a single thread's worth of posts
+
 ## [0.9.0]
 
 ### **Svelte**

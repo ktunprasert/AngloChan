@@ -1,20 +1,22 @@
 <script>
     import { params, url } from "@sveltech/routify";
-    import { refresh_threads, threads } from "../../stores/stores";
+    import { threads, refresh_posts } from "../../stores/stores";
     import { tick } from "svelte";
     let value = $params.board;
-    let title, content, files, fileName;
+    let name, content, files, fileName;
     $: {
         value = $params.board;
         if (files) {
             fileName = files[0].name;
         }
+        console.log(files);
     }
     // Using FormData to support file addition alongside JSON structure
     async function threadSubmit() {
         let data = new FormData(document.querySelector("#addThread"));
-        data.append("is_thread", true);
         let success = false;
+        data.append("is_thread", false);
+        data.append("has_file", Boolean(files));
         await axios
             .post("/api/posts", data, {
                 headers: {
@@ -26,16 +28,15 @@
                 }
             })
             .then(e => {
-                // If the thread was successfully updated, append the boardslist
                 success = true;
             })
             .catch(err => {
                 console.log(err);
             });
         if (success) {
-            await refresh_threads($params.board);
+            await refresh_posts($params.id);
             await tick();
-            title = null;
+            name = null;
             content = null;
             files = null;
             fileName = null;
@@ -58,14 +59,13 @@
         on:submit|preventDefault={threadSubmit}
         enctype="multipart/form-data">
         <div class="field is-horizontal">
-            <div class="field-label"><label for="">Title</label></div>
+            <div class="field-label"><label for="">Name</label></div>
             <div class="field-body">
                 <input
-                    required
                     class="input is-small"
                     type="text"
-                    name="title"
-                    bind:value={title}
+                    name="name"
+                    bind:value={name}
                     id="" />
             </div>
         </div>
@@ -91,7 +91,6 @@
                             class="file-input"
                             type="file"
                             name="file"
-                            required
                             bind:files />
                         <span class="file-cta">
                             <span class="file-icon">
@@ -109,6 +108,7 @@
         <div class="field is-horizontal">
             <div class="field-label" />
             <div class="field-body">
+                <input type="hidden" name="thread_id" bind:value={$params.id} />
                 <input name="board" type="hidden" bind:value />
                 <button class="button is-small">Submit</button>
             </div>

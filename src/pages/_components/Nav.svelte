@@ -7,21 +7,18 @@
     }
 </script>
 
-<style>
+<style lang="scss">
     #nav {
         display: flex;
         justify-content: center;
         text-align: center;
-    }
-    a {
-        margin: 0 10px;
-    }
-    #nav a:hover {
-        text-decoration: underline !important;
-    }
-    hr {
-        max-width: 500px;
-        margin: 0.25rem auto;
+
+        a {
+            margin: 0 10px;
+            &:hover {
+                text-decoration: underline !important;
+            }
+        }
     }
 </style>
 

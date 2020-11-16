@@ -4,6 +4,7 @@
     import { threads, refresh_threads } from "../../stores/stores";
     import { isChangingPage } from "@sveltech/routify";
     import AddThread from "../_components/AddThread.svelte";
+    import Image from "../_components/Image.svelte";
     // Grab the board slug from route parameter
     // refresh_threads($params.board);
     $: {
@@ -41,7 +42,7 @@
         grid-gap: 10px;
     }
     .threads_list .card img {
-        object-fit: contain;
+        object-fit: cover;
     }
 </style>
 
@@ -63,9 +64,12 @@
                         <a href={$url(`../thread/${t.id}`)}>
                             <figure class="image is-4by3">
                                 {#if t.upload}
-                                    <img
+                                    <Image
                                         src={`/uploads/${t.upload.file_path}`}
                                         alt={t.upload.file_name} />
+                                    <!-- <img
+                                        src={`/uploads/${t.upload.file_path}`}
+                                        alt={t.upload.file_name} /> -->
                                 {:else}
                                     <!-- svelte-ignore a11y-img-redundant-alt -->
                                     <img

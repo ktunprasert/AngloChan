@@ -1,4 +1,19 @@
 const mix = require('laravel-mix');
+
+const autoPreprocess = require('svelte-preprocess');
+const postcssImport = require('postcss-import');
+
+const production = !process.env.ROLLUP_WATCH;
+const config = {
+    dev: !production, // run-time checks      
+    preprocess: [
+        autoPreprocess({
+            postcss: { plugins: [postcssImport()] },
+            defaults: { style: 'postcss' }
+        })
+    ]
+};
+// const config = {};
 require('laravel-mix-svelte');
 
 /*
@@ -14,4 +29,4 @@ require('laravel-mix-svelte');
 
 mix.js('src/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .svelte();
+    .svelte(config);

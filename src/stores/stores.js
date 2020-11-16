@@ -3,10 +3,12 @@ const axios = require('axios');
 
 export const threads = writable({data: []});
 export const boards = writable({data: []});
+export const posts = writable({data: []});
 
 // Async Function to deal with global variables
 export const refresh_boards = refreshBoards;
 export const refresh_threads = refreshThreads;
+export const refresh_posts = refreshPosts;
 // Custom function to perform async request to grab boards list
 // When successful, the threads list is updated which should update any subscribed components
 async function refreshThreads(board){
@@ -22,5 +24,13 @@ async function refreshBoards(){
     let data = res.data;
     console.log("boards grabbed", data);
     boards.set(data);
+    return data;
+}
+
+async function refreshPosts(id){
+    let res = await axios.get("/api/thread?id="+id);
+    let data = res.data;
+    console.log("posts grabbed", data);
+    posts.set(data);
     return data;
 }

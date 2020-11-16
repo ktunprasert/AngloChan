@@ -1,26 +1,78 @@
 <script>
-    import { params } from "@sveltech/routify";
-
-    // console.log("reached", board, id);
-    // const axios = require("axios");
-    // const url = axios.get("/api/threads?board_slug=" + board);
+    import { params, isChangingPage } from "@sveltech/routify";
+    import AddPost from "../../_components/AddPost.svelte";
+    import Image from "../../_components/Image.svelte";
+    import { posts, refresh_posts } from "../../../stores/stores.js";
+    import { onDestroy } from "svelte";
+    console.log($params);
+    $: {
+        if (!$isChangingPage) {
+            refresh_posts($params.id);
+        }
+    }
+    onDestroy(() => {
+        posts.set({});
+    });
 </script>
 
-<style>
+<style lang="scss" global>
     .thread_view {
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 1rem auto;
+    }
+    .single_post {
+        display: flex;
+        margin: 0.5rem 0;
+        &__image {
+            width: 100%;
+            max-width: calc(300px - 1.5rem);
+            margin-right: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        &__card {
+            width: 100%;
+        }
+    }
+    .field-label {
+        min-width: calc(300px - 1.5rem);
     }
 </style>
 
-<div class="thread_view">hi</div>
-<main>
-    <!-- <h1 class="is-size-1 has-text-weight-bold">{board}</h1>
-    <slot>
-        {#await url}
-            Loading threads...
-        {:then { data }}
-            {#each data.data as t}{t.title || 'Anonymous'} {t.content}{/each}
-        {/await}
-    </slot> -->
-</main>
+<AddPost />
+<div class="thread_view">
+    {#if $posts.status === 'ok'}
+        {#each $posts.data as p}
+            <div class="single_post">
+                {#if p.upload}
+                    <a
+                        class="single_post__image"
+                        href={'/uploads/' + p.upload.file_path}
+                        target="_blank">
+                        <Image
+                            cls=""
+                            src={'/uploads/' + p.upload.file_path}
+                            alt={p.upload.file_name} />
+                    </a>
+                {:else}
+                    <div class="single_post__image" />
+                {/if}
+                <div class="card single_post__card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            {#if p.is_thread}
+                                <span
+                                    class="is-size-5 has-text-weight-bold">{p.title}</span>
+                            {/if}
+                            <span class="mx-1">{p.name ?? 'Anonymous'}</span>
+                            <time
+                                class="mx-1">{new Date(p.created_at).toLocaleString()}</time>
+                        </p>
+                    </header>
+                    <p class="card-content">{p.content}</p>
+                </div>
+            </div>
+        {:else}No posts found...{/each}
+    {:else}Loading posts...{/if}
+</div>
