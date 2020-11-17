@@ -78,7 +78,7 @@
                     id=""
                     cols="20"
                     rows="10"
-                    maxlength="500"
+                    maxlength="2500"
                     class="textarea is-small" />
             </div>
         </div>

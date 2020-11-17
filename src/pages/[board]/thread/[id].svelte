@@ -4,6 +4,9 @@
     import Image from "../../_components/Image.svelte";
     import { posts, refresh_posts } from "../../../stores/stores.js";
     import { onDestroy } from "svelte";
+    const dayjs = require("dayjs");
+    var relativeTime = require("dayjs/plugin/relativeTime");
+    dayjs.extend(relativeTime);
     console.log($params);
     $: {
         if (!$isChangingPage) {
@@ -35,17 +38,27 @@
                 height: 100%;
                 object-fit: contain;
             }
-            &.expanded{
+            &.expanded {
                 max-height: unset;
             }
         }
         &__card {
             width: 100%;
             background: #1c1c1c;
+            header {
+                font-family: Nunito Sans;
+            }
+            .card-header-title {
+                background: #181818;
+                font-weight: 400;
+            }
             .post-title {
                 color: #aaa;
             }
             .post-name {
+                &:first-child {
+                    margin-left: 0 !important;
+                }
                 color: #7c2d2d;
             }
             .post-date {
@@ -70,20 +83,24 @@
                 {:else}
                     <div class="single_post__image" />
                 {/if}
-                <div class="card single_post__card">
+                <div id={'post_' + p.id} class="card single_post__card">
                     <header class="card-header">
                         <p class="card-header-title">
                             {#if p.is_thread == 1}
                                 <span
-                                    class="is-size-5 has-text-weight-bold post-title">{p.title}</span>
+                                    class="has-text-weight-bold post-title">{p.title}</span>
                             {/if}
                             <span
                                 class="mx-1 post-name">{p.name ?? 'Anonymous'}</span>
                             <time
-                                class="mx-1 post-date">{new Date(p.created_at).toLocaleString()}</time>
+                                class="mx-1 post-date">{dayjs(p.created_at).format('dddd DD.MM.YYYY [~] ') + dayjs(p.created_at).fromNow()}</time>
+                            <a href={'#post_' + p.id}><span>No.</span></a>
+                            <a><span>{p.id}</span></a>
                         </p>
                     </header>
-                    <p class="card-content">{p.content}</p>
+                    <p class="card-content">
+                        {@html p.content}
+                    </p>
                 </div>
             </div>
         {:else}No posts found...{/each}

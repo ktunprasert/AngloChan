@@ -1,4 +1,4 @@
-$body-family: "Mulish";
+$body-family: "Montserrat";
 $menu-item-hover-background-color: darken(#f4f4f4, 10%);
 $t-clr: #d9d9d9;
 $l-clr: #2d7c7c;
@@ -19,6 +19,9 @@ $file-cta-active-color: $t-clr;
 $file-name-border-color: lighten($bg-clr, 10%);
 $input-focus-border-color: $l-clr;
 $input-background-color: $bg-clr;
+
+$card-header-padding: 5px 13px;
+$card-content-padding: .5rem 13px;
 
 h1,h2,h3,h4,h5,h6{
     font-family: "Nunito Sans";

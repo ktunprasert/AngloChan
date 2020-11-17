@@ -15,7 +15,7 @@ async function refreshThreads(board){
     // Trigger "Loading..."
     threads.set({status: '', data: []})
     let res = await axios.get("/api/boards/list/?board_slug=" + board);
-    let data = res.data;
+    let data = res.data; 
     console.log("within async", data);
     threads.set(data);
     return data;
@@ -32,7 +32,7 @@ async function refreshBoards(){
 async function refreshPosts(id){
     let res = await axios.get("/api/thread?id="+id);
     let data = res.data;
-    // console.log("posts grabbed", data);
+    console.log("posts grabbed", data);
     posts.set(data);
     return data;
 }

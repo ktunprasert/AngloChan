@@ -1,5 +1,21 @@
 # Version Changes of AngloChan
 
+## [0.16.0]
+
+### **Svelte**
+
+-   Added dayjs dependency to translate time
+-   Increased maximum content size for posts
+-   Changed default body font to Montserrat
+-   Adjusted card styling for boards and thread views
+-   Added time and relative time to thread view
+-   Removed OP's name (Anonymous) from boards list
+
+### **Laravel**
+
+-   `posts.content` mutator with an nl2br wrapper, may need to to similar formatting for greentext and post quote
+-   Changed loaded fonts within `views.layouts.app`
+
 ## [0.15.1]
 
 ### **Svelte**

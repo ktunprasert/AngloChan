@@ -1,8 +1,7 @@
 <script>
     export let file;
     export let post_view = false;
-    import { onDestroy, onMount } from "svelte";
-    import { isChangingPage } from "@sveltech/routify";
+    import { onDestroy } from "svelte";
 
     // Initiate file
     let hoverEl,

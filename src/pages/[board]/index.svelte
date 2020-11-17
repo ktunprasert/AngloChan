@@ -60,7 +60,6 @@
             if (sortEl) {
                 sortEl.dispatchEvent(new Event("change"));
             }
-            ajaxFired = false;
         });
     }
 </script>
@@ -136,15 +135,9 @@
                         </a>
                     </div>
                     <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="title is-4">
-                                    <a
-                                        href={$url(`../thread/${t.id}`)}>{t.title}</a>
-                                </p>
-                                <p class="subtitle is-6 post-name">Anonymous</p>
-                            </div>
-                        </div>
+                        <p class="title is-4 mb-2">
+                            <a href={$url(`../thread/${t.id}`)}>{t.title}</a>
+                        </p>
                         <div class="content">{t.content}</div>
                     </div>
                 </div>

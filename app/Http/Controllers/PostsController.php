@@ -7,7 +7,6 @@ use App\Posts;
 use App\Boards;
 use Image;
 use App\Uploads;
-use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller {
     public function store(Request $request) {
